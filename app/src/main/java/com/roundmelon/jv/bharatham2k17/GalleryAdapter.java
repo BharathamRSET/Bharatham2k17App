@@ -14,7 +14,9 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import java.util.List;
 
-
+/**
+ * Created by bijai on 17-08-2016.
+ */
 public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.MyViewHolder> {
 
     private List<Image> images;
