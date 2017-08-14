@@ -42,6 +42,7 @@
             android:exported="true" />
         <activity android:name=".Badge"></activity>
         <activity android:name=".Selfie"></activity>
+        <activity android:name=".SelfieGallery"></activity>
 
     </application>
 
