@@ -1,7 +1,6 @@
 package com.roundmelon.jv.bharatham2k17;
 
 import android.content.Context;
-
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.view.ViewPager;
@@ -18,7 +17,9 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import java.util.ArrayList;
 
-
+/**
+ * Created by bijai on 17-08-2016.
+ */
 public class SlideshowDialogFragment extends DialogFragment {
 
     private String TAG = SlideshowDialogFragment.class.getSimpleName();
