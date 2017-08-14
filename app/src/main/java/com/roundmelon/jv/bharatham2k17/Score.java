@@ -24,9 +24,11 @@ public class Score extends AppCompatActivity {
     int m = 0;
     int n = 0;
     int[] final_status = new int[7];
-    int[] firstNo = new int[5];
+    static int[] firstNo = new int[5];
     int[] secondNo = new int[5];
     int[] thirdNo = new int[5];
+
+    int  firstData,secondData,thirdData;
 
     //use ____ in event names not spaces
     String[][] GOne = new String[3][3];
@@ -119,54 +121,32 @@ public class Score extends AppCompatActivity {
 
     public void trigger(){
         int flagGetData = 0;
+//        int  firstData,secondData,thirdData;
+
+        Log.d("Trigger","trigger started");
 
         Firebase.setAndroidContext(this);
         final Firebase ref = new Firebase("https://bharatham-2k17.firebaseio.com/main/events");
         final Firebase final_ref = new Firebase("https://bharatham-2k17.firebaseio.com/main/final");
 
-        for(j=0;j<items_group.length - 1;j++){
+        ///check the j loop here
+        for(j=0;j<items_group.length-1;j++){
             if(final_status[j] == 1){
-                ref.child(items_group[j]).child("prizes").child("First").addValueEventListener(new ValueEventListener() {
+
+
+                ref.child(items_group[j]).child("prizes").addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
 
-                        firstNo[j] = (int) dataSnapshot.getChildrenCount();
-                        Log.d("Firebase..111....",Integer.toString(firstNo[j]));
 
-                    }
+                        firstNo[j] = (int) dataSnapshot.child("First").getChildrenCount();
+                        secondNo[j] = (int) dataSnapshot.child("Second").getChildrenCount();
+                        thirdNo[j] = (int) dataSnapshot.child("Third").getChildrenCount();
 
-                    @Override
-                    public void onCancelled(FirebaseError firebaseError) {
-
-                    }
-                });
-
-
-                ref.child(items_group[j]).child("prizes").child("Second").addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-
-                        secondNo[j] = (int) dataSnapshot.getChildrenCount();
-                        Log.d("Firebase..222....",Integer.toString(secondNo[j]));
-
-
-                    }
-
-                    @Override
-                    public void onCancelled(FirebaseError firebaseError) {
-
-                    }
-                });
-
-
-                ref.child(items_group[j]).child("prizes").child("Third").addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-
-                        thirdNo[j] = (int) dataSnapshot.getChildrenCount();
-                        Log.d("Firebase..333....",Integer.toString(thirdNo[j]));
-
-
+                        Log.d("First Children",""+j+"--"+Integer.toString(firstNo[j]));
+                        Log.d("Second Children",Integer.toString(secondNo[j]));
+                        Log.d("Third Children",Integer.toString(thirdNo[j]));
+                        getData();
                     }
 
                     @Override
@@ -182,7 +162,11 @@ public class Score extends AppCompatActivity {
 
 
         //get data is called before the above loops have finished
-        getData();
+
+//        while (firstData == 1 && secondData == 1 && thirdData == 1);
+
+        
+
 
     }
 
@@ -199,6 +183,7 @@ public class Score extends AppCompatActivity {
         for(k=0;k<items_group.length;k++){
             Log.d("here2","here2");
             if(final_status[k] == 1){
+                Log.d("if clear","....."+firstNo[k]+"----"+k);
                 for(l=1;l<=firstNo[k];l++){
                     Log.d("here3","here3");
 
@@ -220,6 +205,9 @@ public class Score extends AppCompatActivity {
 
                         }
                     });
+                    ////
+
+
 
                 }
 
@@ -279,6 +267,18 @@ public class Score extends AppCompatActivity {
             }
         }
     }
+
+
+    public void callgetData(){
+
+        while (firstData == 1 && secondData == 1 && thirdData == 1){
+            getData();
+        }
+
+    }
+
+
+    //
 
 }
 
