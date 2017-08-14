@@ -52,7 +52,7 @@ public class Score extends AppCompatActivity {
         final Firebase ref = new Firebase("https://bharatham-2k17.firebaseio.com/main/events");
         final Firebase final_ref = new Firebase("https://bharatham-2k17.firebaseio.com/main/final");
 
-        editText = (TextView) findViewById(R.id.editText);
+
 
 
 
