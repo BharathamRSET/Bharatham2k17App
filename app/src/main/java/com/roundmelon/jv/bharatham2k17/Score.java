@@ -38,7 +38,7 @@ public class Score extends AppCompatActivity {
 //    String[][] GFive = new String[3][3];
 
     String[][] data = new String[5][3];
-    data
+
     int[] dataFlag = new int[6];
 
     TextView editText;
@@ -103,7 +103,6 @@ public class Score extends AppCompatActivity {
         final Firebase ref = new Firebase("https://bharatham-2k17.firebaseio.com/main/events");
         final Firebase final_ref = new Firebase("https://bharatham-2k17.firebaseio.com/main/final");
 
-        ///check the j loop here
 
 
 
@@ -115,10 +114,6 @@ public class Score extends AppCompatActivity {
                     if (final_status[j] == 1) {
 
                         firstNo[j] = (int) dataSnapshot.child(items_group[j]).child("prizes").child("First").getChildrenCount();
-
-//                                ref.child(items_group[k]).child("prizes").child("First").addValueEventListener(new ValueEventListener() {
-//                                    @Override
-//                                    public void onDataChange(DataSnapshot dataSnapshot) {
 
                         Log.d("HelloFirst", "" + dataSnapshot.child(items_group[j]).child("prizes").child("First").getChildrenCount());
 
@@ -136,13 +131,6 @@ public class Score extends AppCompatActivity {
                             }
                         }
 
-//                                    }
-//
-//                                    @Override
-//                                    public void onCancelled(FirebaseError firebaseError) {
-//
-//                                    }
-//                                });
 
                         secondNo[j] = (int) dataSnapshot.child(items_group[j]).child("prizes").child("Second").getChildrenCount();
 
