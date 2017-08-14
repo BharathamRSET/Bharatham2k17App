@@ -17,9 +17,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import java.util.ArrayList;
 
-/**
- * Created by bijai on 17-08-2016.
- */
+
 public class SlideshowDialogFragment extends DialogFragment {
 
     private String TAG = SlideshowDialogFragment.class.getSimpleName();
