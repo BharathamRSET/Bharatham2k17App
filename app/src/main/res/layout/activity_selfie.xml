@@ -143,7 +143,7 @@
         android:id="@+id/imageView3"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
-        app:srcCompat="@drawable/round_melon"
+        app:srcCompat="@drawable/dp"
         android:layout_marginRight="8dp"
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginLeft="8dp"
