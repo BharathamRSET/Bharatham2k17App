@@ -38,6 +38,7 @@ public class Score extends AppCompatActivity {
 //    String[][] GFive = new String[3][3];
 
     String[][] data = new String[5][3];
+    data
     int[] dataFlag = new int[6];
 
     TextView editText;
@@ -127,10 +128,10 @@ public class Score extends AppCompatActivity {
 
 
                                 String data1 = String.valueOf(dataSnapshot.child(items_group[j]).child("prizes").child("First").child("" + l).getValue());
-                                data[k][0] += data1;
-                                data[k][0] += "--";
+                                data[j][0] += data1;
+                                data[j][0] += "--";
 
-                                Log.d("First get", "kitti" + data1);
+                                Log.d("First get", "kitti" + data[j][0]);
 
                             }
                         }
@@ -154,10 +155,10 @@ public class Score extends AppCompatActivity {
 
 
                                 String data1 = String.valueOf(dataSnapshot.child(items_group[j]).child("prizes").child("Second").child("" + l).getValue());
-                                data[k][1] += data1;
-                                data[k][1] += "--";
+                                data[j][1] += data1;
+                                data[j][1] += "--";
 
-                                Log.d("Second get", "kitti" + data1);
+                                Log.d("Second get", "kitti" + data[j][1]);
 
                             }
                         }
@@ -171,10 +172,10 @@ public class Score extends AppCompatActivity {
 
 
                                 String data1 = String.valueOf(dataSnapshot.child(items_group[j]).child("prizes").child("Third").child("" + l).getValue());
-                                data[k][2] += data1;
-                                data[k][2] += "--";
+                                data[j][2] += data1;
+                                data[j][2] += "--";
 
-                                Log.d("Third get", "kitti" + data1);
+                                Log.d("Third get", "kitti" + data[j][2]);
 
                             }
                         }
@@ -183,7 +184,6 @@ public class Score extends AppCompatActivity {
                         Log.d("First Children", "" + j + "--" + Integer.toString(firstNo[j]));
                         Log.d("Second Children", Integer.toString(secondNo[j]));
                         Log.d("Third Children", Integer.toString(thirdNo[j]));
-                        //getData();
                     }
                 }
             }
@@ -194,150 +194,9 @@ public class Score extends AppCompatActivity {
             }
         });
 
-
-
-
-        //get data is called before the above loops have finished
-
-//        while (firstData == 1 && secondData == 1 && thirdData == 1);
-
-
-
-
     }
 
 
-//    public void getData(){
-//
-//        Log.d("here1","here1");
-//
-//        Firebase.setAndroidContext(this);
-//        final Firebase ref = new Firebase("https://bharatham-2k17.firebaseio.com/main/events");
-//        final Firebase final_ref = new Firebase("https://bharatham-2k17.firebaseio.com/main/final");
-//
-//
-//
-//
-//
-//
-//
-//        ////items_group[k]
-//
-//        for(k=0;k<items_group.length-1;k++){
-//            Log.d("here2","here2");
-//            if(final_status[k] == 1){
-//                Log.d("if clear","....."+firstNo[k]+"----"+k);
-//                for(l=1;l<=firstNo[k];l++){
-//                    Log.d("here3","here3");
-//
-//                    ref.child(items_group[k]).child("prizes").child("First").addValueEventListener(new ValueEventListener() {
-//                        @Override
-//                        public void onDataChange(DataSnapshot dataSnapshot) {
-//
-//                            Log.d("Hello",""+dataSnapshot.getChildrenCount());
-//
-////                            Map<String,String> map = dataSnapshot.getValue(Map.class);
-////                            String data = map.get("1");
-////                            data[k][0] += map.get(Integer.toString(l));
-////                            data[k][0] += "--";
-//
-//
-//                            String data1 = String.valueOf(dataSnapshot.child(""+l).getValue());
-//                            data[k][0] += data1;
-//                            data[k][0] += "--";
-//
-//                            Log.d("First get","kitti"+data1);
-//
-//                        }
-//
-//                        @Override
-//                        public void onCancelled(FirebaseError firebaseError) {
-//
-//                        }
-//                    });
-//                    ////
-//
-//
-//
-//                }
-//
-//
-//                /////
-//
-//
-//                for(m=1;m<=firstNo[k];m++){
-//
-//                    ref.child(items_group[l]).child("prizes").child("Second").addValueEventListener(new ValueEventListener() {
-//                        @Override
-//                        public void onDataChange(DataSnapshot dataSnapshot) {
-//
-////                            Map<String,String> map = dataSnapshot.getValue(Map.class);
-////                            //String data = map.get(Integer.toString(l));
-////                            data[k][1] += map.get(Integer.toString(m));
-////                            data[k][1] += "--";
-//
-//
-//
-//                            String data1 = String.valueOf(dataSnapshot.child(""+m).getValue());
-//                            data[k][1] += data1;
-//                            data[k][1] += "--";
-//
-//                            Log.d("Second get","kitti"+data1);
-//
-//
-//                        }
-//
-//                        @Override
-//                        public void onCancelled(FirebaseError firebaseError) {
-//
-//                        }
-//                    });
-//
-//                }
-//
-//                ///
-//
-//
-//                for(n=1;n<=firstNo[k];n++){
-//
-//                    ref.child(items_group[l]).child("prizes").child("Third").addValueEventListener(new ValueEventListener() {
-//                        @Override
-//                        public void onDataChange(DataSnapshot dataSnapshot) {
-//
-////                            Map<String,String> map = dataSnapshot.getValue(Map.class);
-////                            //String data = map.get(Integer.toString(l));
-////                            data[k][2] += map.get(Integer.toString(n));
-////                            data[k][2] += "--";
-//
-//                            Log.d("Third get","kitti");
-//
-//                        }
-//
-//                        @Override
-//                        public void onCancelled(FirebaseError firebaseError) {
-//
-//                        }
-//                    });
-//
-//                }
-//
-//
-//
-//            }
-//        }
-//    }
-//
-//
-//    public void callgetData(){
-//
-//        while (firstData == 1 && secondData == 1 && thirdData == 1){
-//            getData();
-//        }
-//
-//    }
-
-
-    //
 
 }
 
