@@ -117,7 +117,7 @@ public class Badge extends AppCompatActivity {
             public void onClick(View v) {
                 String completePath = Environment.getExternalStoragePublicDirectory(
                         Environment.DIRECTORY_PICTURES).getPath();
-                fileName = "/A3K/profile_picture.png";
+                fileName = "/Bharatham 2k17/profile_picture.png";
                 Intent sharingIntent = new Intent(Intent.ACTION_SEND);
                 Uri imgUri = Uri.parse(completePath+fileName);
                 Log.d("LINK",imgUri.getPath());
