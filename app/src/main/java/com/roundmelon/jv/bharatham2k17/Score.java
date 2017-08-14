@@ -31,11 +31,11 @@ public class Score extends AppCompatActivity {
     int  firstData,secondData,thirdData;
 
     //use ____ in event names not spaces
-    String[][] GOne = new String[3][3];
-    String[][] GTwo = new String[3][3];
-    String[][] GThree = new String[3][3];
-    String[][] GFour = new String[3][3];
-    String[][] GFive = new String[3][3];
+//    String[][] GOne = new String[3][3];
+//    String[][] GTwo = new String[3][3];
+//    String[][] GThree = new String[3][3];
+//    String[][] GFour = new String[3][3];
+//    String[][] GFive = new String[3][3];
 
     String[][] data = new String[5][3];
     int[] dataFlag = new int[6];
@@ -54,33 +54,6 @@ public class Score extends AppCompatActivity {
         editText = (TextView) findViewById(R.id.editText);
 
 
-//beginning of using for
-//            for (i = 0; i <items_group.length-1; i++) {
-//                final_ref.addValueEventListener(new ValueEventListener() {
-//                    @Override
-//                    public void onDataChange(DataSnapshot dataSnapshot) {
-//
-//                        Map<String,String> map = dataSnapshot.getValue(Map.class);
-//
-//                        final_status[i] = Integer.parseInt(map.get(items_group[i]));
-//                        //Log.d("Status",s);
-//
-//                    }
-//
-//                    @Override
-//                    public void onCancelled(FirebaseError firebaseError) {
-//
-//                    }
-//                });
-//
-//            }
-//
-//        for (i = 0; i <items_group.length-1; i++) {
-//            Log.d("Status for",Integer.toString(final_status[i]));
-//        }
-///this  was using for
-
-        //using seperate varibales
 
         final_ref.addValueEventListener(new ValueEventListener() {
             @Override
@@ -130,152 +103,238 @@ public class Score extends AppCompatActivity {
         final Firebase final_ref = new Firebase("https://bharatham-2k17.firebaseio.com/main/final");
 
         ///check the j loop here
-        for(j=0;j<items_group.length-1;j++){
-            if(final_status[j] == 1){
 
 
-                ref.child(items_group[j]).child("prizes").addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
+
+        ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                for(j=0;j<items_group.length-1;j++) {
+                    if (final_status[j] == 1) {
+
+                        firstNo[j] = (int) dataSnapshot.child(items_group[j]).child("prizes").child("First").getChildrenCount();
+
+//                                ref.child(items_group[k]).child("prizes").child("First").addValueEventListener(new ValueEventListener() {
+//                                    @Override
+//                                    public void onDataChange(DataSnapshot dataSnapshot) {
+
+                        Log.d("HelloFirst", "" + dataSnapshot.child(items_group[j]).child("prizes").child("First").getChildrenCount());
+
+                        if (firstNo[j] != 0) {
+
+                            for(l=1;l<=firstNo[j];l++) {
 
 
-                        firstNo[j] = (int) dataSnapshot.child("First").getChildrenCount();
-                        secondNo[j] = (int) dataSnapshot.child("Second").getChildrenCount();
-                        thirdNo[j] = (int) dataSnapshot.child("Third").getChildrenCount();
+                                String data1 = String.valueOf(dataSnapshot.child(items_group[j]).child("prizes").child("First").child("" + l).getValue());
+                                data[k][0] += data1;
+                                data[k][0] += "--";
 
-                        Log.d("First Children",""+j+"--"+Integer.toString(firstNo[j]));
-                        Log.d("Second Children",Integer.toString(secondNo[j]));
-                        Log.d("Third Children",Integer.toString(thirdNo[j]));
-                        getData();
+                                Log.d("First get", "kitti" + data1);
+
+                            }
+                        }
+
+//                                    }
+//
+//                                    @Override
+//                                    public void onCancelled(FirebaseError firebaseError) {
+//
+//                                    }
+//                                });
+
+                        secondNo[j] = (int) dataSnapshot.child(items_group[j]).child("prizes").child("Second").getChildrenCount();
+
+
+                        Log.d("HelloSecond", "" + dataSnapshot.child(items_group[j]).child("prizes").child("Second").getChildrenCount());
+
+                        if (secondNo[j] != 0) {
+
+                            for(l=1;l<=secondNo[j];l++) {
+
+
+                                String data1 = String.valueOf(dataSnapshot.child(items_group[j]).child("prizes").child("Second").child("" + l).getValue());
+                                data[k][1] += data1;
+                                data[k][1] += "--";
+
+                                Log.d("Second get", "kitti" + data1);
+
+                            }
+                        }
+                        thirdNo[j] = (int)dataSnapshot.child(items_group[j]).child("prizes").child("Third").getChildrenCount();
+
+                        Log.d("HelloThird", "" + dataSnapshot.child(items_group[j]).child("prizes").child("Third").getChildrenCount());
+
+                        if (thirdNo[j] != 0) {
+
+                            for(l=1;l<=thirdNo[j];l++) {
+
+
+                                String data1 = String.valueOf(dataSnapshot.child(items_group[j]).child("prizes").child("Third").child("" + l).getValue());
+                                data[k][2] += data1;
+                                data[k][2] += "--";
+
+                                Log.d("Third get", "kitti" + data1);
+
+                            }
+                        }
+
+
+                        Log.d("First Children", "" + j + "--" + Integer.toString(firstNo[j]));
+                        Log.d("Second Children", Integer.toString(secondNo[j]));
+                        Log.d("Third Children", Integer.toString(thirdNo[j]));
+                        //getData();
                     }
+                }
+            }
 
-                    @Override
-                    public void onCancelled(FirebaseError firebaseError) {
-
-                    }
-                });
-
-
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
 
             }
-        }
+        });
+
+
 
 
         //get data is called before the above loops have finished
 
 //        while (firstData == 1 && secondData == 1 && thirdData == 1);
 
-        
+
 
 
     }
 
 
-    public void getData(){
-
-        Log.d("here1","here1");
-
-        Firebase.setAndroidContext(this);
-        final Firebase ref = new Firebase("https://bharatham-2k17.firebaseio.com/main/events");
-        final Firebase final_ref = new Firebase("https://bharatham-2k17.firebaseio.com/main/final");
-
-
-        for(k=0;k<items_group.length;k++){
-            Log.d("here2","here2");
-            if(final_status[k] == 1){
-                Log.d("if clear","....."+firstNo[k]+"----"+k);
-                for(l=1;l<=firstNo[k];l++){
-                    Log.d("here3","here3");
-
-                    ref.child(items_group[l]).child("prizes").child("First").addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(DataSnapshot dataSnapshot) {
-
-                            Map<String,String> map = dataSnapshot.getValue(Map.class);
-                            //String data = map.get(Integer.toString(l));
-                            data[k][0] += map.get(Integer.toString(l));
-                            data[k][0] += "--";
-
-                            Log.d("First get","kitti");
-
-                        }
-
-                        @Override
-                        public void onCancelled(FirebaseError firebaseError) {
-
-                        }
-                    });
-                    ////
-
-
-
-                }
-
-
-                /////
-
-
-                for(m=1;m<=firstNo[k];m++){
-
-                    ref.child(items_group[l]).child("prizes").child("Second").addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(DataSnapshot dataSnapshot) {
-
-                            Map<String,String> map = dataSnapshot.getValue(Map.class);
-                            //String data = map.get(Integer.toString(l));
-                            data[k][1] += map.get(Integer.toString(m));
-                            data[k][1] += "--";
-
-                        }
-
-                        @Override
-                        public void onCancelled(FirebaseError firebaseError) {
-
-                        }
-                    });
-
-                }
-
-                ///
-
-
-                for(n=1;n<=firstNo[k];n++){
-
-                    ref.child(items_group[l]).child("prizes").child("Third").addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(DataSnapshot dataSnapshot) {
-
-                            Map<String,String> map = dataSnapshot.getValue(Map.class);
-                            //String data = map.get(Integer.toString(l));
-                            data[k][2] += map.get(Integer.toString(n));
-                            data[k][2] += "--";
-
-                            Log.d("Third get","kitti");
-
-                        }
-
-                        @Override
-                        public void onCancelled(FirebaseError firebaseError) {
-
-                        }
-                    });
-
-                }
-
-
-
-            }
-        }
-    }
-
-
-    public void callgetData(){
-
-        while (firstData == 1 && secondData == 1 && thirdData == 1){
-            getData();
-        }
-
-    }
+//    public void getData(){
+//
+//        Log.d("here1","here1");
+//
+//        Firebase.setAndroidContext(this);
+//        final Firebase ref = new Firebase("https://bharatham-2k17.firebaseio.com/main/events");
+//        final Firebase final_ref = new Firebase("https://bharatham-2k17.firebaseio.com/main/final");
+//
+//
+//
+//
+//
+//
+//
+//        ////items_group[k]
+//
+//        for(k=0;k<items_group.length-1;k++){
+//            Log.d("here2","here2");
+//            if(final_status[k] == 1){
+//                Log.d("if clear","....."+firstNo[k]+"----"+k);
+//                for(l=1;l<=firstNo[k];l++){
+//                    Log.d("here3","here3");
+//
+//                    ref.child(items_group[k]).child("prizes").child("First").addValueEventListener(new ValueEventListener() {
+//                        @Override
+//                        public void onDataChange(DataSnapshot dataSnapshot) {
+//
+//                            Log.d("Hello",""+dataSnapshot.getChildrenCount());
+//
+////                            Map<String,String> map = dataSnapshot.getValue(Map.class);
+////                            String data = map.get("1");
+////                            data[k][0] += map.get(Integer.toString(l));
+////                            data[k][0] += "--";
+//
+//
+//                            String data1 = String.valueOf(dataSnapshot.child(""+l).getValue());
+//                            data[k][0] += data1;
+//                            data[k][0] += "--";
+//
+//                            Log.d("First get","kitti"+data1);
+//
+//                        }
+//
+//                        @Override
+//                        public void onCancelled(FirebaseError firebaseError) {
+//
+//                        }
+//                    });
+//                    ////
+//
+//
+//
+//                }
+//
+//
+//                /////
+//
+//
+//                for(m=1;m<=firstNo[k];m++){
+//
+//                    ref.child(items_group[l]).child("prizes").child("Second").addValueEventListener(new ValueEventListener() {
+//                        @Override
+//                        public void onDataChange(DataSnapshot dataSnapshot) {
+//
+////                            Map<String,String> map = dataSnapshot.getValue(Map.class);
+////                            //String data = map.get(Integer.toString(l));
+////                            data[k][1] += map.get(Integer.toString(m));
+////                            data[k][1] += "--";
+//
+//
+//
+//                            String data1 = String.valueOf(dataSnapshot.child(""+m).getValue());
+//                            data[k][1] += data1;
+//                            data[k][1] += "--";
+//
+//                            Log.d("Second get","kitti"+data1);
+//
+//
+//                        }
+//
+//                        @Override
+//                        public void onCancelled(FirebaseError firebaseError) {
+//
+//                        }
+//                    });
+//
+//                }
+//
+//                ///
+//
+//
+//                for(n=1;n<=firstNo[k];n++){
+//
+//                    ref.child(items_group[l]).child("prizes").child("Third").addValueEventListener(new ValueEventListener() {
+//                        @Override
+//                        public void onDataChange(DataSnapshot dataSnapshot) {
+//
+////                            Map<String,String> map = dataSnapshot.getValue(Map.class);
+////                            //String data = map.get(Integer.toString(l));
+////                            data[k][2] += map.get(Integer.toString(n));
+////                            data[k][2] += "--";
+//
+//                            Log.d("Third get","kitti");
+//
+//                        }
+//
+//                        @Override
+//                        public void onCancelled(FirebaseError firebaseError) {
+//
+//                        }
+//                    });
+//
+//                }
+//
+//
+//
+//            }
+//        }
+//    }
+//
+//
+//    public void callgetData(){
+//
+//        while (firstData == 1 && secondData == 1 && thirdData == 1){
+//            getData();
+//        }
+//
+//    }
 
 
     //
