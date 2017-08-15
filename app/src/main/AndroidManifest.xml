@@ -44,6 +44,10 @@
         <activity android:name=".Selfie"></activity>
         <activity android:name=".Splash"></activity>
         <activity android:name=".Gallery"></activity>
+        <activity android:name=".Video"></activity>
+        <activity android:name=".Youtube"></activity>
+
+
 
     </application>
 

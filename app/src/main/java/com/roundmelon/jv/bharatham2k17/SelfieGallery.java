@@ -59,7 +59,7 @@ public class SelfieGallery extends AppCompatActivity {
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
 
-        //why is the size fixed here???????????
+
 
 
         //recyclerView.setLayoutManager(new LinearLayoutManager(this));
