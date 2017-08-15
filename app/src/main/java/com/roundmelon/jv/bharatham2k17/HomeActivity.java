@@ -101,9 +101,7 @@ public class HomeActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_badge) {
             if(isWriteStorageAllowed()){
-                //If permission is already having then showing the toast
-                // Toast.makeText(Selfie.this,"You already have the permission",Toast.LENGTH_LONG).show();
-                //Existing the method with return
+
                 Intent fbIntent = new Intent(HomeActivity.this,Fb.class);
                 startActivity(fbIntent);
 
