@@ -3,21 +3,42 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
+            android:id="@+id/nav_home"
             android:icon="@drawable/ic_menu_camera"
-            android:title="Import" />
+            android:title="Home" />
+        <item
+            android:id="@+id/nav_scores"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="Live Scores" />
+        <item
+            android:id="@+id/nav_updates"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="Updates" />
+        <item
+            android:id="@+id/nav_badge"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Bharatham2k17 Badge" />
+        <item
+            android:id="@+id/nav_selfie"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Selfie" />
+        <item
+            android:id="@+id/nav_selfiegallery"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Selfie Gallery" />
+
         <item
             android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
+            android:icon="@drawable/ic_menu_manage"
             android:title="Gallery" />
         <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Slideshow" />
-        <item
-            android:id="@+id/nav_manage"
+            android:id="@+id/nav_videos"
             android:icon="@drawable/ic_menu_manage"
-            android:title="Tools" />
+            android:title="Bharatham2k17 Badge" />
+        <item
+            android:id="@+id/nav_badge"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Bharatham2k17 Badge" />
     </group>
 
     <item android:title="Communicate">

@@ -65,12 +65,7 @@ public class ParseApplications {
                             else if(tagName.equalsIgnoreCase("content")){
                                 currentRecord.setContent(textValue.substring(textValue.indexOf(">")+1,textValue.lastIndexOf("<")).replace("<br />","\n"));
                             }
-//                            else if(tagName.equalsIgnoreCase("link")){
-//                                currentRecord.setLink(textValue);
-//                            }
-//                            else if(tagName.equalsIgnoreCase("pubDate")){
-//                                currentRecord.setPubDate(textValue);
-//                            }
+
                         }
                         break;
 

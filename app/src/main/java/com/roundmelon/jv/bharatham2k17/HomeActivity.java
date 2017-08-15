@@ -1,10 +1,14 @@
 package com.roundmelon.jv.bharatham2k17;
 
+import android.app.Activity;
+import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.view.View;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -12,9 +16,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Toast;
+import android.Manifest;
 
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    final private int STORAGE_PERMISSION_CODE = 23;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,22 +89,93 @@ public class HomeActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.nav_home) {
             // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        } else if (id == R.id.nav_scores) {
+            Intent scoreIntet = new Intent(HomeActivity.this,Score.class);
+            startActivity(scoreIntet);
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.nav_updates) {
+            Intent updateIntent = new Intent(HomeActivity.this,Updates.class);
+            startActivity(updateIntent);
 
-        } else if (id == R.id.nav_manage) {
+        } else if (id == R.id.nav_badge) {
+            if(isWriteStorageAllowed()){
+                //If permission is already having then showing the toast
+                // Toast.makeText(Selfie.this,"You already have the permission",Toast.LENGTH_LONG).show();
+                //Existing the method with return
+                Intent fbIntent = new Intent(HomeActivity.this,Fb.class);
+                startActivity(fbIntent);
 
-        } else if (id == R.id.nav_share) {
 
-        } else if (id == R.id.nav_send) {
+            }
 
+            //If the app has not the permission then asking for the permission
+            requestStoragePermission();
+
+        } else if (id == R.id.nav_selfie) {
+            Intent selfieIntent = new Intent(HomeActivity.this,Selfie.class);
+            startActivity(selfieIntent);
+
+        } else if (id == R.id.nav_selfiegallery) {
+            Intent  selfieGalleryintent = new Intent(HomeActivity.this,SelfieGallery.class);
+            startActivity(selfieGalleryintent);
+        } else if (id == R.id.nav_gallery){
+            Intent galleryIntent = new Intent(HomeActivity.this,Gallery.class);
+            startActivity(galleryIntent);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+    private boolean isWriteStorageAllowed() {
+        //Getting the permission status
+        int result = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+
+        //If permission is granted returning true
+        if (result == PackageManager.PERMISSION_GRANTED)
+            return true;
+
+        //If permission is not granted returning false
+        return false;
+    }
+    //Requesting permission
+    private void requestStoragePermission(){
+
+        if (ActivityCompat.shouldShowRequestPermissionRationale((Activity)this,Manifest.permission.WRITE_EXTERNAL_STORAGE)){
+            //If the user has denied the permission previously your code will come to this block
+            //Here you can explain why you need this permission
+            //Explain here why you need this permission
+            Toast.makeText(this,"This permission is required to store the badge on your device.",Toast.LENGTH_LONG).show();
+        }
+
+        //And finally ask for the permission
+        ActivityCompat.requestPermissions((Activity)this,new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},STORAGE_PERMISSION_CODE);
+    }
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case STORAGE_PERMISSION_CODE : {
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+                    Intent fbIntent = new Intent(HomeActivity.this,Fb.class);
+                    startActivity(fbIntent);
+
+
+                } else {
+                    Toast.makeText(this,"Please grant the permission to access this feature.",Toast.LENGTH_LONG).show();
+                    // permission denied, boo! Disable the
+                    // functionality that depends on this permission.
+                }
+                return;
+            }
+
+            // other 'case' lines to check for other
+            // permissions this app might request
+        }
     }
 }
