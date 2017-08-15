@@ -46,6 +46,7 @@
         <activity android:name=".Gallery"></activity>
         <activity android:name=".Video"></activity>
         <activity android:name=".Youtube"></activity>
+        <activity android:name=".Updates"></activity>
 
 
 
