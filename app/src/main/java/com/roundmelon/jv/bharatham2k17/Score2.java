@@ -26,7 +26,8 @@ import java.util.Map;
 public class Score2 extends AppCompatActivity {
 
 
-    final String[] items_group = new String[]{"GOne", "GTwo", "GThree", "GFour", "GFive"};
+    //final String[] items_group = new String[]{"GOne", "GTwo", "GThree", "GFour", "GFive"};
+    final String[] items_group = new String[]{"RANGOLI","INSTRUMENTAL_MUSIC_STRINGS"};
     final String[] items_ind = new String[]{"one", "two", "three", "four", "five"};
     int i = 0;
     int j = 0;
@@ -102,6 +103,7 @@ public class Score2 extends AppCompatActivity {
         mLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(mLayoutManager);
 
+        Log.d("started",".......");
 
         Firebase.setAndroidContext(this);
         final Firebase ref = new Firebase("https://bharatham-2k17.firebaseio.com/main/events");
@@ -118,11 +120,13 @@ public class Score2 extends AppCompatActivity {
                 //for here/////////////////////////////////////////////////////////
                 Map<String,String> map = dataSnapshot.getValue(Map.class);
 
-                for(i=0;i<items_group.length-1;i++) {
+
+                Log.d("here","-----");
+                for(i=0;i<=items_group.length-1;i++) {
 
 
                     final_status[i] = Integer.parseInt(map.get(items_group[i]));
-                    Log.d("Final" + i, Integer.toString(final_status[i]));
+                    Log.d("Final", Integer.toString(final_status[i]));
 
                 }
 
@@ -158,7 +162,13 @@ public class Score2 extends AppCompatActivity {
 
     public void trigger(){
 
-        //details_array = new ArrayList<>();
+
+
+        Log.d("trigger",".........");
+
+        details_array1 = new ArrayList<Details>();
+        details_array2 = new ArrayList<Details>();
+        details_array3 = new ArrayList<Details>();
 
         mDatabase = FirebaseDatabase.getInstance().getReference("events");
 //        Firebase.setAndroidContext(this);
@@ -170,52 +180,56 @@ public class Score2 extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
-                for(j=0;j<items_group.length-1;j++) {
+                Log.d("trigger data change",".........");
+
+                for(j=0;j<=items_group.length-1;j++) {
                     if (final_status[j] == 1) {
 
+                        Log.d("trigger for",".........");
                         //dismissing the progress dialog
-                        Log.d("Events", dataSnapshot.getChildrenCount() + "");
+                        Log.d("Events", dataSnapshot.child(items_group[j]).getChildrenCount() + "");
                         //progressDialog.dismiss();
-                        name1.clear();
-                        eventName1.clear();
-                        className1.clear();
-                        house1.clear();
-                        position1.clear();
-                        house1.clear();
-                        score1.clear();
-
-                        name2.clear();
-                        eventName2.clear();
-                        className2.clear();
-                        house2.clear();
-                        position2.clear();
-                        house2.clear();
-                        score2.clear();
-
-                        name3.clear();
-                        eventName3.clear();
-                        className3.clear();
-                        house3.clear();
-                        position3.clear();
-                        house3.clear();
-                        score3.clear();
+//                        name1.clear();
+//                        eventName1.clear();
+//                        className1.clear();
+//                        house1.clear();
+//                        position1.clear();
+//                        house1.clear();
+//                        score1.clear();
+//
+//                        name2.clear();
+//                        eventName2.clear();
+//                        className2.clear();
+//                        house2.clear();
+//                        position2.clear();
+//                        house2.clear();
+//                        score2.clear();
+//
+//                        name3.clear();
+//                        eventName3.clear();
+//                        className3.clear();
+//                        house3.clear();
+//                        position3.clear();
+//                        house3.clear();
+//                        score3.clear();
 
 
                         //iterating through all the values in database
-                        for (DataSnapshot postSnapshot : dataSnapshot.child(items_group[j]).child("First").getChildren()) {
+                        for (DataSnapshot postSnapshot : dataSnapshot.child(items_group[j]).child("first").getChildren()) {
                             ///gettinng no of first no
+                            Log.d("first data change",".........");
                             firstNo[j] =(int) postSnapshot.getChildrenCount();
                             Details details1 = postSnapshot.getValue(Details.class);
                             //Log.d("",details.getName());
                             //Image image = new Image();
                             details_array1.add(details1);
-                            name1.add(details1.getName());
+//                            name1.add(details1.getName());
                             Log.d("name",details1.getName());
-                            eventName1.add(details1.getEventName());
-                            className1.add(details1.getClassName());
-                            house1.add(details1.getHouse());
-                            position1.add(details1.getPosition());
-                            score1.add(details1.getScore());
+//                            eventName1.add(details1.getEventName());
+//                            className1.add(details1.getClassName());
+//                            house1.add(details1.getHouse());
+//                            position1.add(details1.getPosition());
+//                            score1.add(details1.getScore());
 
                             ///image.setLarge(details.getUrl());
                             //images.add(image);
@@ -223,38 +237,38 @@ public class Score2 extends AppCompatActivity {
 
                         }
 
-                        for (DataSnapshot postSnapshot : dataSnapshot.child(items_group[j]).child("Second").getChildren()) {
+                        for (DataSnapshot postSnapshot : dataSnapshot.child(items_group[j]).child("second").getChildren()) {
                             Details details2 = postSnapshot.getValue(Details.class);
                             secondNo[j] = (int) postSnapshot.getChildrenCount();
                             //Log.d("",details.getName());
                             //Image image = new Image();
                             details_array2.add(details2);
-                            name2.add(details2.getName());
+//                            name2.add(details2.getName());
                             Log.d("name",details2.getName());
-                            eventName2.add(details2.getEventName());
-                            className2.add(details2.getClassName());
-                            house2.add(details2.getHouse());
-                            position2.add(details2.getPosition());
-                            score2.add(details2.getScore());
+//                            eventName2.add(details2.getEventName());
+//                            className2.add(details2.getClassName());
+//                            house2.add(details2.getHouse());
+//                            position2.add(details2.getPosition());
+//                            score2.add(details2.getScore());
                             ///image.setLarge(details.getUrl());
                             //images.add(image);
 
 
                         }
 
-                        for (DataSnapshot postSnapshot : dataSnapshot.child(items_group[j]).child("Third").getChildren()) {
+                        for (DataSnapshot postSnapshot : dataSnapshot.child(items_group[j]).child("third").getChildren()) {
                             Details details3 = postSnapshot.getValue(Details.class);
                             thirdNo[j] = (int) postSnapshot.getChildrenCount();
                             //Log.d("",details.getName());
                             //Image image = new Image();
                             details_array3.add(details3);
-                            name3.add(details3.getName());
+//                            name3.add(details3.getName());
                             Log.d("name",details3.getName());
-                            eventName3.add(details3.getEventName());
-                            className3.add(details3.getClassName());
-                            house3.add(details3.getHouse());
-                            position3.add(details3.getPosition());
-                            score3.add(details3.getScore());
+//                            eventName3.add(details3.getEventName());
+//                            className3.add(details3.getClassName());
+//                            house3.add(details3.getHouse());
+//                            position3.add(details3.getPosition());
+//                            score3.add(details3.getScore());
                             ///image.setLarge(details.getUrl());
                             //images.add(image);
 

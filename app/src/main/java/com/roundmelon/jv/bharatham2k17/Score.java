@@ -59,6 +59,7 @@ public class Score extends AppCompatActivity {
         final_ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                Log.d("here","here////");
                 Map<String,String> map = dataSnapshot.getValue(Map.class);
                 final_status[0] = Integer.parseInt(map.get("GOne"));
                 Log.d("Final 0",Integer.toString(final_status[0]));

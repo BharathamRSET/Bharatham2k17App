@@ -89,20 +89,16 @@ public DetailedAdapter(Context context,List<Details> details_array1,List<Details
     // Replace the contents of a view (invoked by the layout manager)
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
-//        // - get element from your dataset at this position
-//        // - replace the contents of the view with that element
-//        final String name = values.get(position);
-//        holder.txtHeader.setText(name);
-//        holder.txtHeader.setOnClickListener(new OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                remove(position);
-//
-//
-//            }
-//        });
-//
-//        holder.txtFooter.setText("Footer: " + name);
+
+        Details det1 = details_array1.get(position);
+        Details det2 = details_array2.get(position);
+        Details det3 = details_array3.get(position);
+        holder.event_name.setText(det1.getEventName());
+        holder.first_prize_group.setText(det1.getName());
+        holder.second_prize_group.setText(det2.getName());
+        holder.third_prize_group.setText(det3.getName());
+
+
 
 
     }
