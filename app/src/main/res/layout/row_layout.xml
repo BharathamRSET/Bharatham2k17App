@@ -10,7 +10,6 @@
         android:layout_height="26dip"
         android:layout_alignParentEnd="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/event_name"
         android:layout_marginStart="28dp"
         android:ellipsize="marquee"
         android:maxLines="1"
@@ -71,11 +70,11 @@
 
 
     <TextView
-        android:id="@+id/s_prize_group"
+        android:id="@+id/third_prize_group"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
-        android:layout_alignStart="@+id/second_prize_group"
+        android:layout_alignStart="@+id/third_prize_group"
         android:layout_alignWithParentIfMissing="true"
         android:layout_below="@+id/second_prize"
         android:gravity="center_vertical"
@@ -84,7 +83,7 @@
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/second_prize_group"
+        android:id="@+id/third_prize_group"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/description"
@@ -101,7 +100,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
-        android:layout_alignStart="@+id/s_prize_group"
+        android:layout_alignStart="@+id/third_prize_group"
         android:layout_alignWithParentIfMissing="true"
         android:layout_below="@+id/first_prize"
         android:gravity="center_vertical"
