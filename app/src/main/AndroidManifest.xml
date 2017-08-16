@@ -55,7 +55,7 @@
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".Youtube"
             android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".Updates"
+        <activity android:name=".DayOne"
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".Chart"
             android:theme="@style/AppTheme.NoActionBar"/>

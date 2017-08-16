@@ -2,8 +2,10 @@ package com.roundmelon.jv.bharatham2k17;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -125,7 +127,7 @@ public class HomeActivity extends AppCompatActivity
             startActivity(scoreIntet);
 
         } else if (id == R.id.nav_updates) {
-            Intent updateIntent = new Intent(HomeActivity.this,Updates.class);
+            Intent updateIntent = new Intent(HomeActivity.this,Score2.class);
             startActivity(updateIntent);
 
         } else if (id == R.id.nav_badge) {
@@ -150,6 +152,28 @@ public class HomeActivity extends AppCompatActivity
         } else if (id == R.id.nav_gallery){
             Intent galleryIntent = new Intent(HomeActivity.this,Gallery.class);
             startActivity(galleryIntent);
+            //
+        }else if (id == R.id.nav_facebook){
+            try {
+                //change page id
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("fb://page/1855389091393568"));
+                startActivity(intent);
+            } catch (Exception e) {
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.facebook.com/bharatham2017")));
+            }
+        }else if(id == R.id.nav_instagram){
+            //change page id
+            Uri uri = Uri.parse("http://instagram.com/_u/bharatham2017");
+            Intent likeIng = new Intent(Intent.ACTION_VIEW, uri);
+
+            likeIng.setPackage("com.instagram.android");
+
+            try {
+                startActivity(likeIng);
+            } catch (ActivityNotFoundException e) {
+                startActivity(new Intent(Intent.ACTION_VIEW,
+                        Uri.parse("http://instagram.com/bharatham2017/?hl=en")));
+            }
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

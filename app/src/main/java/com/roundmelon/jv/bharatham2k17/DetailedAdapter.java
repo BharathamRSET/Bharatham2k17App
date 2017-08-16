@@ -74,8 +74,7 @@ public DetailedAdapter(Context context,List<Details> details_array1,List<Details
         public ViewHolder(View v) {
             super(v);
             layout = v;
-//            txtHeader = (TextView) v.findViewById(R.id.firstLine);
-//            txtFooter = (TextView) v.findViewById(R.id.secondLine);
+
 
 
 

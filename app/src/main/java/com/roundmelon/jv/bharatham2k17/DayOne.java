@@ -20,10 +20,7 @@ public class DayOne extends AppCompatActivity {
         tabLayout.addTab(tabLayout.newTab().setText("Pareeksha Bhavan H1"));
         tabLayout.addTab(tabLayout.newTab().setText("Pareeksha Bhavan H2"));
         tabLayout.addTab(tabLayout.newTab().setText("Pareeksha Bhavan H3"));
-        tabLayout.addTab(tabLayout.newTab().setText("Pareeksha Bhavan H4"));
-        tabLayout.addTab(tabLayout.newTab().setText("Pareeksha Bhavan H5"));
-        tabLayout.addTab(tabLayout.newTab().setText("Lecture Hall"));
-        tabLayout.addTab(tabLayout.newTab().setText("Lecture Hall"));
+
 
 
         tabLayout.setTabGravity(TabLayout.GRAVITY_CENTER);

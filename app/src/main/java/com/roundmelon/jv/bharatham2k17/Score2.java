@@ -92,7 +92,7 @@ public class Score2 extends AppCompatActivity {
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
 
-    Typeface bebas = Typeface.createFromAsset(getAssets(),  "fonts/bebasneue.ttf");
+    Typeface bebas;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -114,6 +114,7 @@ public class Score2 extends AppCompatActivity {
 
 
 
+        bebas = Typeface.createFromAsset(getResources().getAssets(),  "fonts/bebasneue.ttf");
 
 
 
@@ -292,6 +293,7 @@ public class Score2 extends AppCompatActivity {
 
                         mAdapter = new DetailedAdapter(getApplicationContext(),details_array1,details_array2,details_array3,bebas);
 
+//                        mAdapter = new DetailedAdapter(getApplicationContext(),details_array1,details_array2,details_array3);
                         //adding adapter to recyclerview
                         //recyclerView.setAdapter(adapter);
                         recyclerView.setAdapter(mAdapter);

@@ -51,7 +51,7 @@ public class Gallery extends AppCompatActivity {
 
         progressDialog.setMessage("Loading Images...");
         progressDialog.show();
-        mDatabase = FirebaseDatabase.getInstance().getReference("gallery");
+        mDatabase = FirebaseDatabase.getInstance().getReference("gallery_app");
 
 
 

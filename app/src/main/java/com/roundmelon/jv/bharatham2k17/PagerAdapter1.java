@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 /**
  * Created by DELL on 16-08-2016.
  */
+
 public class PagerAdapter1 extends FragmentStatePagerAdapter {
 
     int mNumOfTabs;
