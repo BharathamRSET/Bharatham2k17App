@@ -1,5 +1,6 @@
 package com.roundmelon.jv.bharatham2k17;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -17,11 +18,18 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
 import android.widget.Toast;
-import android.Manifest;
+import android.widget.ViewFlipper;
 
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    Animation fade_in, fade_out;
+    ViewFlipper viewFlipper;
+    ImageView mImageView;
 
     final private int STORAGE_PERMISSION_CODE = 23;
 
@@ -49,7 +57,27 @@ public class HomeActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        viewFlipper = (ViewFlipper) this.findViewById(R.id.bckgrndViewFlipper1);
+        fade_in = AnimationUtils.loadAnimation(this,
+                android.R.anim.slide_in_left);
+        fade_out = AnimationUtils.loadAnimation(this,
+                android.R.anim.slide_out_right);
+        viewFlipper.setInAnimation(fade_in);
+        viewFlipper.setOutAnimation(fade_out);
+//sets auto flipping
+        viewFlipper.setAutoStart(true);
+        viewFlipper.setFlipInterval(2500);
+        viewFlipper.startFlipping();
+
+
+
+
+
     }
+
+
+
 
     @Override
     public void onBackPressed() {
