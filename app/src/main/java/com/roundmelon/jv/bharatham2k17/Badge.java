@@ -49,15 +49,23 @@ public class Badge extends AppCompatActivity {
         String name = inBundle.get("name").toString();
         String surname = inBundle.get("surname").toString();
         String imageUrl = inBundle.get("imageUrl").toString();
+        final int choice = (int) inBundle.get("choice");
+        Log.d("ChoiceBadge",Integer.toString(choice));
 
 
+        TextView  textView = (TextView)findViewById(R.id.textView);
         TextView nameView = (TextView)findViewById(R.id.nameAndSurname);
+
+        Typeface bebas = Typeface.createFromAsset(getResources().getAssets(),  "fonts/bebasneue.ttf");
+
+        textView.setTypeface(bebas);
+        nameView.setTypeface(bebas);
         nameView.setText("" + name + " " + surname);
         ProgressDialog progressDialog= new ProgressDialog(this);
         progressDialog.setMessage("Making your badge... Please Wait...");
         progressDialog.show();
 
-        new DownloadImage((ImageView)findViewById(R.id.profileImage),this,progressDialog).execute(imageUrl);
+        new DownloadImage((ImageView)findViewById(R.id.profileImage),this,choice,progressDialog).execute(imageUrl);
 
 
 
@@ -117,7 +125,19 @@ public class Badge extends AppCompatActivity {
             public void onClick(View v) {
                 String completePath = Environment.getExternalStoragePublicDirectory(
                         Environment.DIRECTORY_PICTURES).getPath();
-                fileName = "/Bharatham 2k17/profile_picture.png";
+                if(choice == 1) {
+                    fileName = "/Bharatham 2k17/profile_picture_1.png";
+                }else if(choice == 2){
+                    fileName = "/Bharatham 2k17/profile_picture_2.png";
+                }else if(choice == 3){
+                    fileName = "/Bharatham 2k17/profile_picture_3.png";
+                }else if(choice == 4){
+                    fileName = "/Bharatham 2k17/profile_picture_4.png";
+                }else if(choice == 5){
+                    fileName = "/Bharatham 2k17/profile_picture_5.png";
+                }else if(choice == 6){
+                    fileName = "/Bharatham 2k17/profile_picture_6.png";
+                }
                 Intent sharingIntent = new Intent(Intent.ACTION_SEND);
                 Uri imgUri = Uri.parse(completePath+fileName);
                 Log.d("LINK",imgUri.getPath());
@@ -130,7 +150,7 @@ public class Badge extends AppCompatActivity {
         });
 
 
-        Typeface bebas = Typeface.createFromAsset(getAssets(),  "fonts/bebasneue.ttf");
+
 
         logout.setTypeface(bebas);
         btnShare.setTypeface(bebas);

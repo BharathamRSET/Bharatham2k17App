@@ -26,12 +26,14 @@ public class DownloadImage extends AsyncTask<String, Void, Bitmap> {
     ImageView bmImage;
     Context context;
     ProgressDialog progressDialog;
+    int choice;
 
 
-    public DownloadImage(ImageView bmImage, Context context, ProgressDialog progressDialog) {
+    public DownloadImage(ImageView bmImage, Context context,int choice, ProgressDialog progressDialog) {
         this.bmImage = bmImage;
         this.context=context;
         this.progressDialog=progressDialog;
+        this.choice = choice;
     }
 
     protected Bitmap doInBackground(String... urls) {
@@ -49,6 +51,20 @@ public class DownloadImage extends AsyncTask<String, Void, Bitmap> {
 
     protected void onPostExecute(Bitmap result) {
         Bitmap bigImage = result;
+
+        if(choice == 1){
+            Bitmap smallImage = BitmapFactory.decodeResource(context.getResources(), R.drawable.dp);
+        }else if(choice == 2){
+            Bitmap smallImage = BitmapFactory.decodeResource(context.getResources(), R.drawable.dp1);
+        }else if(choice == 3){
+            Bitmap smallImage = BitmapFactory.decodeResource(context.getResources(), R.drawable.dp2);
+        }else if(choice == 4){
+            Bitmap smallImage = BitmapFactory.decodeResource(context.getResources(), R.drawable.dp3);
+        }else if(choice == 5){
+            Bitmap smallImage = BitmapFactory.decodeResource(context.getResources(), R.drawable.dp4);
+        }else if(choice == 6){
+            Bitmap smallImage = BitmapFactory.decodeResource(context.getResources(), R.drawable.dp5);
+        }
 
         Bitmap smallImage = BitmapFactory.decodeResource(context.getResources(), R.drawable.dp);
         Bitmap mergedImages = createSingleImageFromMultipleImages(bigImage, smallImage);
@@ -79,25 +95,142 @@ public class DownloadImage extends AsyncTask<String, Void, Bitmap> {
         }
         //create a file to write bitmap data
         //Log.d("FILE",folder.getPath());
-        File f = new File(folder.getPath(), "profile_picture.png");
-        // Log.d("FILE",f.getPath());
-        try{
-            f.createNewFile();
+        File f;
+        if(choice == 1){
+            f = new File(folder.getPath(), "profile_picture_1.png");
+            try{
+                f.createNewFile();
 //Convert bitmap to byte array
-            ByteArrayOutputStream bos = new ByteArrayOutputStream();
-            mergedImages.compress(Bitmap.CompressFormat.PNG, 0 /*ignored for PNG*/, bos);
-            byte[] bitmapdata = bos.toByteArray();
+                ByteArrayOutputStream bos = new ByteArrayOutputStream();
+                mergedImages.compress(Bitmap.CompressFormat.PNG, 0 /*ignored for PNG*/, bos);
+                byte[] bitmapdata = bos.toByteArray();
 
-            //write the bytes in file
-            FileOutputStream fos = new FileOutputStream(f);
-            fos.write(bitmapdata);
-            fos.flush();
-            fos.close();
-            // Log.d("FILE","file created !");
+                //write the bytes in file
+                FileOutputStream fos = new FileOutputStream(f);
+                fos.write(bitmapdata);
+                fos.flush();
+                fos.close();
+                // Log.d("FILE","file created !");
+            }
+            catch(IOException e){
+                Toast.makeText(context,"Some error occurred while storing the badge to your device", Toast.LENGTH_LONG).show();
+            }
+
+            // Log.d("FILE",f.getPath());
+        }else if(choice == 2){
+            f = new File(folder.getPath(), "profile_picture_2.png");
+            try{
+                f.createNewFile();
+//Convert bitmap to byte array
+                ByteArrayOutputStream bos = new ByteArrayOutputStream();
+                mergedImages.compress(Bitmap.CompressFormat.PNG, 0 /*ignored for PNG*/, bos);
+                byte[] bitmapdata = bos.toByteArray();
+
+                //write the bytes in file
+                FileOutputStream fos = new FileOutputStream(f);
+                fos.write(bitmapdata);
+                fos.flush();
+                fos.close();
+                // Log.d("FILE","file created !");
+            }
+            catch(IOException e){
+                Toast.makeText(context,"Some error occurred while storing the badge to your device", Toast.LENGTH_LONG).show();
+            }
+        }else if(choice == 2){
+            f = new File(folder.getPath(), "profile_picture_3.png");
+            try{
+                f.createNewFile();
+//Convert bitmap to byte array
+                ByteArrayOutputStream bos = new ByteArrayOutputStream();
+                mergedImages.compress(Bitmap.CompressFormat.PNG, 0 /*ignored for PNG*/, bos);
+                byte[] bitmapdata = bos.toByteArray();
+
+                //write the bytes in file
+                FileOutputStream fos = new FileOutputStream(f);
+                fos.write(bitmapdata);
+                fos.flush();
+                fos.close();
+                // Log.d("FILE","file created !");
+            }
+            catch(IOException e){
+                Toast.makeText(context,"Some error occurred while storing the badge to your device", Toast.LENGTH_LONG).show();
+            }
+        }else if(choice == 2){
+            f = new File(folder.getPath(), "profile_picture_4.png");
+            try{
+                f.createNewFile();
+//Convert bitmap to byte array
+                ByteArrayOutputStream bos = new ByteArrayOutputStream();
+                mergedImages.compress(Bitmap.CompressFormat.PNG, 0 /*ignored for PNG*/, bos);
+                byte[] bitmapdata = bos.toByteArray();
+
+                //write the bytes in file
+                FileOutputStream fos = new FileOutputStream(f);
+                fos.write(bitmapdata);
+                fos.flush();
+                fos.close();
+                // Log.d("FILE","file created !");
+            }
+            catch(IOException e){
+                Toast.makeText(context,"Some error occurred while storing the badge to your device", Toast.LENGTH_LONG).show();
+            }
+        }else if(choice == 2){
+            f = new File(folder.getPath(), "profile_picture_5.png");
+            try{
+                f.createNewFile();
+//Convert bitmap to byte array
+                ByteArrayOutputStream bos = new ByteArrayOutputStream();
+                mergedImages.compress(Bitmap.CompressFormat.PNG, 0 /*ignored for PNG*/, bos);
+                byte[] bitmapdata = bos.toByteArray();
+
+                //write the bytes in file
+                FileOutputStream fos = new FileOutputStream(f);
+                fos.write(bitmapdata);
+                fos.flush();
+                fos.close();
+                // Log.d("FILE","file created !");
+            }
+            catch(IOException e){
+                Toast.makeText(context,"Some error occurred while storing the badge to your device", Toast.LENGTH_LONG).show();
+            }
+        }else if(choice == 2){
+            f = new File(folder.getPath(), "profile_picture_6.png");
+            try{
+                f.createNewFile();
+//Convert bitmap to byte array
+                ByteArrayOutputStream bos = new ByteArrayOutputStream();
+                mergedImages.compress(Bitmap.CompressFormat.PNG, 0 /*ignored for PNG*/, bos);
+                byte[] bitmapdata = bos.toByteArray();
+
+                //write the bytes in file
+                FileOutputStream fos = new FileOutputStream(f);
+                fos.write(bitmapdata);
+                fos.flush();
+                fos.close();
+                // Log.d("FILE","file created !");
+            }
+            catch(IOException e){
+                Toast.makeText(context,"Some error occurred while storing the badge to your device", Toast.LENGTH_LONG).show();
+            }
         }
-        catch(IOException e){
-            Toast.makeText(context,"Some error occurred while storing the badge to your device", Toast.LENGTH_LONG).show();
-        }
+//
+//        try{
+//            f.createNewFile();
+////Convert bitmap to byte array
+//            ByteArrayOutputStream bos = new ByteArrayOutputStream();
+//            mergedImages.compress(Bitmap.CompressFormat.PNG, 0 /*ignored for PNG*/, bos);
+//            byte[] bitmapdata = bos.toByteArray();
+//
+//            //write the bytes in file
+//            FileOutputStream fos = new FileOutputStream(f);
+//            fos.write(bitmapdata);
+//            fos.flush();
+//            fos.close();
+//            // Log.d("FILE","file created !");
+//        }
+//        catch(IOException e){
+//            Toast.makeText(context,"Some error occurred while storing the badge to your device", Toast.LENGTH_LONG).show();
+//        }
     }
 
 
