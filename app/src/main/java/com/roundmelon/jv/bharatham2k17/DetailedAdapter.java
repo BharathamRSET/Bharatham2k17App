@@ -42,6 +42,12 @@ public DetailedAdapter(Context context,List<Details> details_array1,List<Details
         public TextView first_prize_group;
         public TextView second_prize_group;
         public TextView third_prize_group;
+        public TextView first_group;
+        public TextView second_group;
+        public TextView third_group;
+        public TextView first_points;
+        public TextView second_points;
+        public TextView third_points;
 
         public View layout;
 
@@ -54,6 +60,15 @@ public DetailedAdapter(Context context,List<Details> details_array1,List<Details
             first_prize_group = (TextView) v.findViewById(R.id.first_prize_group);
             second_prize_group = (TextView) v.findViewById(R.id.second_prize_group);
             third_prize_group = (TextView) v.findViewById(R.id.third_prize_group);
+
+            first_group = (TextView)v.findViewById(R.id.first_group);
+            second_group = (TextView)v.findViewById(R.id.second_group);
+            third_group = (TextView)v.findViewById(R.id.third_group);
+
+            first_points = (TextView)v.findViewById(R.id.first_points);
+            second_points = (TextView)v.findViewById(R.id.second_points);
+            third_points = (TextView)v.findViewById(R.id.third_points);
+
         }
     }
 
@@ -80,7 +95,7 @@ public DetailedAdapter(Context context,List<Details> details_array1,List<Details
         LayoutInflater inflater = LayoutInflater.from(
                 parent.getContext());
         View v =
-                inflater.inflate(R.layout.row_layout, parent, false);
+                inflater.inflate(R.layout.row_layout2, parent, false);
         // set the view's size, margins, paddings and layout parameters
         ViewHolder vh = new ViewHolder(v);
         return vh;
@@ -95,8 +110,17 @@ public DetailedAdapter(Context context,List<Details> details_array1,List<Details
         Details det3 = details_array3.get(position);
         holder.event_name.setText(det1.getEventName());
         holder.first_prize_group.setText(det1.getName());
+        holder.first_group.setText(det1.getHouse());
+        holder.first_points.setText(det1.getScore());
+
         holder.second_prize_group.setText(det2.getName());
+        holder.second_group.setText(det2.getHouse());
+        holder.second_points.setText(det2.getScore());
+
+
         holder.third_prize_group.setText(det3.getName());
+        holder.third_group.setText(det3.getHouse());
+        holder.third_points.setText(det3.getScore());
 
 
 

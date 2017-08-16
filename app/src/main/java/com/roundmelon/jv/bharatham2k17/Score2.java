@@ -26,19 +26,18 @@ import java.util.Map;
 public class Score2 extends AppCompatActivity {
 
 
-    //final String[] items_group = new String[]{"GOne", "GTwo", "GThree", "GFour", "GFive"};
-    final String[] items_group = new String[]{"RANGOLI","INSTRUMENTAL_MUSIC_STRINGS"};
-    final String[] items_ind = new String[]{"one", "two", "three", "four", "five"};
+    final String[] items_group = new String[]{"WOLF_OF_KAKKANAD_STREET","GAME_OF_THRONES","NADAN_PATTU", "RANGOLI","MOVIE_SCENE_DUBBING", "MIME", "DRAMA", "TABLEAU", "THEMATIC_DANCE_GIRLS", "NOSTALGIA_GIRLS", "GROUP_DANCE_BOYS", "SYNCHRONIZATION", "THIRUVATHIRA", "QUIZ", "DEBATE_ENGLISH", "DEBATE_MALAYALAM", "SHORTFILM", "OLD_MALAYALAM_SONG_DUET", "FACE_PAINTING", "FLOWER_ARRANGEMENT", "GROUP_SONG_WESTERN", "GROUP_SONG_EASTERN", "UNPLUGGED", "LIGHT_MUSIC_VOCAL_MALE", "LIGHT_MUSIC_VOCAL_FEMALE", "HINDUSTANI_CLASSICAL_MUSIC", "CARNATIC_CLASSICAL_MUSIC","WESTERN_VOCAL_SOLO_MALE_FEMALE", "INSTRUMENTAL_MUSIC_STRINGS", "INSTRUMENTAL_MUSIC_KEYBOARD", "INSTRUMENT_PERCUSSION", "INSTRUMENT_WIND", "MONOACT", "MIMICRY", "FANCY_DRESS", "BHARATHANATYAM", "MOHINIYATTOM", "FOLK_DANCE", "ADAPT_TUNE", "ON_THE_SPOT_PAINTING", "PHOTOGRAPHY", "AKSHARASLOKAM", "RECITATION_MAL", "RECITATION_ENG", "KADHAPRASANGAM", "MOCK_PRESS", "ELOCUTION_ENG)", "ELOCUTION_MAL", "EXTEMPORE_ENG", "EXTEMPORE_MAL", "MANGLISH", "TURNAROUND", "MAPPILAPATT"};
+
     int i = 0;
     int j = 0;
     int k = 0;
     int l = 0;
     int m = 0;
     int n = 0;
-    int[] final_status = new int[7];
-    static int[] firstNo = new int[5];
-    int[] secondNo = new int[5];
-    int[] thirdNo = new int[5];
+    int[] final_status = new int[100];
+    static int[] firstNo = new int[100];
+    int[] secondNo = new int[100];
+    int[] thirdNo = new int[100];
 
     private DatabaseReference mDatabase;
 
@@ -81,7 +80,7 @@ public class Score2 extends AppCompatActivity {
 //    String[][] GFour = new String[3][3];
 //    String[][] GFive = new String[3][3];
 
-    String[][] data = new String[5][3];
+    String[][] data = new String[100][3];
 
     int[] dataFlag = new int[6];
 
@@ -122,10 +121,12 @@ public class Score2 extends AppCompatActivity {
 
 
                 Log.d("here","-----");
+                Log.d("No. of events",Integer.toString(items_group.length));
                 for(i=0;i<=items_group.length-1;i++) {
 
 
                     final_status[i] = Integer.parseInt(map.get(items_group[i]));
+//                    final_ref.child(items_group[i]).setValue("0");
                     Log.d("Final", Integer.toString(final_status[i]));
 
                 }
@@ -295,6 +296,8 @@ public class Score2 extends AppCompatActivity {
 
             @Override
             public void onCancelled(FirebaseError firebaseError) {
+
+
 
             }
         });

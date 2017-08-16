@@ -92,7 +92,8 @@ public class HomeActivity extends AppCompatActivity
         if (id == R.id.nav_home) {
             // Handle the camera action
         } else if (id == R.id.nav_scores) {
-            Intent scoreIntet = new Intent(HomeActivity.this,Score.class);
+            //Intent scoreIntet = new Intent(HomeActivity.this,Score2.class);
+            Intent scoreIntet = new Intent(HomeActivity.this,Chart.class);
             startActivity(scoreIntet);
 
         } else if (id == R.id.nav_updates) {
@@ -142,13 +143,10 @@ public class HomeActivity extends AppCompatActivity
     private void requestStoragePermission(){
 
         if (ActivityCompat.shouldShowRequestPermissionRationale((Activity)this,Manifest.permission.WRITE_EXTERNAL_STORAGE)){
-            //If the user has denied the permission previously your code will come to this block
-            //Here you can explain why you need this permission
-            //Explain here why you need this permission
+
             Toast.makeText(this,"This permission is required to store the badge on your device.",Toast.LENGTH_LONG).show();
         }
 
-        //And finally ask for the permission
         ActivityCompat.requestPermissions((Activity)this,new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},STORAGE_PERMISSION_CODE);
     }
     @Override
@@ -166,14 +164,12 @@ public class HomeActivity extends AppCompatActivity
 
                 } else {
                     Toast.makeText(this,"Please grant the permission to access this feature.",Toast.LENGTH_LONG).show();
-                    // permission denied, boo! Disable the
-                    // functionality that depends on this permission.
+
                 }
                 return;
             }
 
-            // other 'case' lines to check for other
-            // permissions this app might request
+
         }
     }
 }

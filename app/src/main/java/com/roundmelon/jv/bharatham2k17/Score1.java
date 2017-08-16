@@ -12,7 +12,7 @@ import com.firebase.client.ValueEventListener;
 
 import java.util.Map;
 
-public class Score extends AppCompatActivity {
+public class Score1 extends AppCompatActivity {
 
 
     final String[] items_group = new String[]{"GOne","GTwo","GThree","GFour","GFive"};
