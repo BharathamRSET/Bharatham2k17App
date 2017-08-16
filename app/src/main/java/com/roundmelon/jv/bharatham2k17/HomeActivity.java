@@ -153,6 +153,11 @@ public class HomeActivity extends AppCompatActivity
 //            Intent  selfieGalleryintent = new Intent(HomeActivity.this,SelfieGallery.class);
 //            startActivity(selfieGalleryintent);
 //        }
+        else if (id == R.id.nav_videos){
+            Intent galleryIntent = new Intent(HomeActivity.this,Video.class);
+            startActivity(galleryIntent);
+            //
+        }
         else if (id == R.id.nav_gallery){
             Intent galleryIntent = new Intent(HomeActivity.this,Gallery.class);
             startActivity(galleryIntent);

@@ -12,25 +12,11 @@ import com.google.android.youtube.player.YouTubePlayerView;
 public class Youtube extends YouTubeBaseActivity
         implements YouTubePlayer.OnInitializedListener {
 
-    private String GOOGLE_API_KEY = "AIzaSyD4i1r8UnyexUNyGs_r-mFNNfndsl-PEG0";
+    private String GOOGLE_API_KEY = "AIzaSyAdHUqrjdsE0u29u3bFWaMOxXKWk-tX6mk";
 
 
-    /*change api key
+    //api key updated
 
-
-
-    dont forget  to
-
-
-
-    change
-
-
-
-    it
-
-
-    */
 
 
 

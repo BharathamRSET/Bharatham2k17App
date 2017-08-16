@@ -35,11 +35,11 @@ public class Video extends AppCompatActivity {
 
 
         Firebase.setAndroidContext(this);
-        Firebase mRootRef = new Firebase("https://rset-63188.firebaseio.com/");
+        Firebase mRootRef = new Firebase("https://bharatham-2k17.firebaseio.com/");
 
         listView1 = (ListView)findViewById(R.id.listView1);
 
-        Firebase videoRef = mRootRef.child("video");
+        Firebase videoRef = mRootRef.child("video_app");
 
 
         final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,mVideo);
