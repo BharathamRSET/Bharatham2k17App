@@ -10,6 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 
+import com.firebase.client.Firebase;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -51,7 +52,11 @@ public class Gallery extends AppCompatActivity {
 
         progressDialog.setMessage("Loading Images...");
         progressDialog.show();
-        mDatabase = FirebaseDatabase.getInstance().getReference("gallery_app");
+
+
+        Firebase.setAndroidContext(this);
+        final Firebase ref = new Firebase("https://bharatham-2k17.firebaseio.com/main/gallery_app");
+        mDatabase = FirebaseDatabase.getInstance().getReference("gallery");
 
 
 
@@ -80,11 +85,13 @@ public class Gallery extends AppCompatActivity {
             }
         }));
 
+
         mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
                 //dismissing the progress dialog
                 Log.d("Gallery",snapshot.getChildrenCount()+"");
+                progressDialog.setCancelable(false);
                 progressDialog.dismiss();
                 images.clear();
                 //iterating through all the values in database
@@ -110,6 +117,8 @@ public class Gallery extends AppCompatActivity {
                 progressDialog.dismiss();
             }
         });
+
+;
 
 
 

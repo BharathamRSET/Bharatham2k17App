@@ -126,11 +126,13 @@ public class HomeActivity extends AppCompatActivity
             Intent scoreIntet = new Intent(HomeActivity.this,Chart.class);
             startActivity(scoreIntet);
 
-        } else if (id == R.id.nav_updates) {
-            Intent updateIntent = new Intent(HomeActivity.this,Score2.class);
-            startActivity(updateIntent);
-
-        } else if (id == R.id.nav_badge) {
+        }
+//        else if (id == R.id.nav_updates) {
+//            Intent updateIntent = new Intent(HomeActivity.this,Score2.class);
+//            startActivity(updateIntent);
+//
+//        }
+        else if (id == R.id.nav_badge) {
             if(isWriteStorageAllowed()){
 
                 Intent fbIntent = new Intent(HomeActivity.this,Fb.class);
@@ -142,14 +144,16 @@ public class HomeActivity extends AppCompatActivity
             //If the app has not the permission then asking for the permission
             requestStoragePermission();
 
-        } else if (id == R.id.nav_selfie) {
-            Intent selfieIntent = new Intent(HomeActivity.this,Selfie.class);
-            startActivity(selfieIntent);
-
-        } else if (id == R.id.nav_selfiegallery) {
-            Intent  selfieGalleryintent = new Intent(HomeActivity.this,SelfieGallery.class);
-            startActivity(selfieGalleryintent);
-        } else if (id == R.id.nav_gallery){
+        }
+//        else if (id == R.id.nav_selfie) {
+//            Intent selfieIntent = new Intent(HomeActivity.this,Selfie.class);
+//            startActivity(selfieIntent);
+//
+//        } else if (id == R.id.nav_selfiegallery) {
+//            Intent  selfieGalleryintent = new Intent(HomeActivity.this,SelfieGallery.class);
+//            startActivity(selfieGalleryintent);
+//        }
+        else if (id == R.id.nav_gallery){
             Intent galleryIntent = new Intent(HomeActivity.this,Gallery.class);
             startActivity(galleryIntent);
             //

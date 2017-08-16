@@ -8,28 +8,33 @@
             android:title="Home" />
         <item
             android:id="@+id/nav_scores"
-            android:icon="@drawable/ic_menu_gallery"
+            android:icon="@drawable/ic_timeline_black_24dp"
             android:title="Live Scores" />
-        <item
-            android:id="@+id/nav_updates"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Updates" />
+
+        //to be shown next update
+        <!--<item-->
+            <!--android:id="@+id/nav_updates"-->
+            <!--android:icon="@drawable/ic_featured_play_list_black_24dp"-->
+            <!--android:title="Updates" />-->
         <item
             android:id="@+id/nav_badge"
             android:icon="@drawable/ic_menu_manage"
             android:title="Bharatham2k17 Badge" />
-        <item
-            android:id="@+id/nav_selfie"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="Selfie" />
-        <item
-            android:id="@+id/nav_selfiegallery"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="Selfie Gallery" />
+
+        //next update
+        <!--<item-->
+            <!--android:id="@+id/nav_selfie"-->
+            <!--android:icon="@drawable/ic_menu_manage"-->
+            <!--android:title="Selfie" />-->
+        //next update
+        <!--<item-->
+            <!--android:id="@+id/nav_selfiegallery"-->
+            <!--android:icon="@drawable/ic_menu_manage"-->
+            <!--android:title="Selfie Gallery" />-->
 
         <item
             android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_manage"
+            android:icon="@drawable/ic_menu_gallery"
             android:title="Gallery" />
         <item
             android:id="@+id/nav_videos"
@@ -42,16 +47,19 @@
         <menu>
             <item
                 android:id="@+id/nav_website"
-                android:icon="@drawable/ic_menu_share"
                 android:title="Website" />
+                <!--android:icon="@drawable/ic_menu_share"-->
+
             <item
                 android:id="@+id/nav_facebook"
-                android:icon="@drawable/ic_menu_share"
                 android:title="Facebook" />
+                <!--android:icon="@drawable/ic_menu_share"-->
+
             <item
                 android:id="@+id/nav_instagram"
-                android:icon="@drawable/ic_menu_send"
                 android:title="Instagram" />
+
+            <!--android:icon="@drawable/ic_menu_send"-->
 
         </menu>
     </item>
