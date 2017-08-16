@@ -7,11 +7,11 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 /**
  * Created by DELL on 16-08-2016.
  */
-public class PagerAdapter extends FragmentStatePagerAdapter {
+public class PagerAdapter1 extends FragmentStatePagerAdapter {
 
     int mNumOfTabs;
 
-    public PagerAdapter(FragmentManager fm, int NumOfTabs) {
+    public PagerAdapter1(FragmentManager fm, int NumOfTabs) {
         super(fm);
         this.mNumOfTabs = NumOfTabs;
     }
@@ -21,24 +21,26 @@ public class PagerAdapter extends FragmentStatePagerAdapter {
 
         switch (position) {
             case 0:
-                TabFragment0 tab0 = new TabFragment0();
+                Tab0 tab0 = new Tab0();
                 return tab0;
 
             case 1:
-                TabFragment1 tab1 = new TabFragment1();
+                Tab1 tab1 = new Tab1();
                 return tab1;
+
             case 2:
-                TabFragment2 tab2 = new TabFragment2();
+                Tab2 tab2 = new Tab2();
                 return tab2;
+
             case 3:
-                TabFragment3 tab3 = new TabFragment3();
+                Tab3 tab3 = new Tab3();
                 return tab3;
+
             case 4:
-                TabFragment4 tab4 = new TabFragment4();
+                Tab4 tab4 = new Tab4();
                 return tab4;
-            case 5:
-                TabFragment5 tab5 = new TabFragment5();
-                return tab5;
+
+
             default:
                 return null;
         }

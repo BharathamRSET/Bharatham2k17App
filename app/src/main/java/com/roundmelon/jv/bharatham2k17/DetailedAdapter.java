@@ -104,7 +104,7 @@ public DetailedAdapter(Context context,List<Details> details_array1,List<Details
             firstHouse = (TextView)v.findViewById(R.id.firstHouse);
             secondHouse = (TextView)v.findViewById(R.id.secondHouse);
             thirdHouse = (TextView)v.findViewById(R.id.thirdHouse);
-            
+
             firstPoints = (TextView)v.findViewById(R.id.firstPoints);
             secondPoints = (TextView)v.findViewById(R.id.secondPoints);
             thirdPoints = (TextView)v.findViewById(R.id.thirdPoints);
@@ -140,26 +140,10 @@ public DetailedAdapter(Context context,List<Details> details_array1,List<Details
 
 
 
-
-
-
         }
     }
 
-//    public void add(int position, String item) {
-//        values.add(position, item);
-//        notifyItemInserted(position);
-//    }
 
-//    public void remove(int position) {
-//        values.remove(position);
-//        notifyItemRemoved(position);
-//    }
-
-    // Provide a suitable constructor (depends on the kind of dataset)
-//    public DetailedAdapter(List<String> myDataset) {
-//        values = myDataset;
-//    }
 
     // Create new views (invoked by the layout manager)
     @Override
