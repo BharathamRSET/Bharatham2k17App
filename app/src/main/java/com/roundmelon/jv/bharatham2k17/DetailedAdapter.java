@@ -1,6 +1,7 @@
 package com.roundmelon.jv.bharatham2k17;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +18,9 @@ public class DetailedAdapter extends RecyclerView.Adapter<DetailedAdapter.ViewHo
     private List<Details> details_array1;
     private List<Details> details_array2;
     private List<Details> details_array3;
+    private Typeface tf;
+
+
 
 //    private ArrayList<String> details_array1;
 //    private ArrayList<String> details_array2;
@@ -24,11 +28,12 @@ public class DetailedAdapter extends RecyclerView.Adapter<DetailedAdapter.ViewHo
 
     private Context context;
 
-public DetailedAdapter(Context context,List<Details> details_array1,List<Details> details_array2,List<Details> details_array3){
+public DetailedAdapter(Context context,List<Details> details_array1,List<Details> details_array2,List<Details> details_array3,Typeface tf){
     this.context = context;
     this.details_array1 = details_array1;
     this.details_array2 = details_array2;
     this.details_array3 = details_array3;
+    this.tf = tf;
 }
 
     // Provide a reference to the views for each data item
@@ -49,6 +54,21 @@ public DetailedAdapter(Context context,List<Details> details_array1,List<Details
         public TextView second_points;
         public TextView third_points;
 
+        public TextView firstPrize;
+        public TextView secondPrize;
+        public TextView thirdPrize;
+
+        public TextView firstHouse;
+        public TextView secondHouse;
+        public TextView thirdHouse;
+
+
+        public TextView firstPoints;
+        public TextView secondPoints;
+        public TextView thirdPoints;
+
+
+
         public View layout;
 
         public ViewHolder(View v) {
@@ -56,6 +76,14 @@ public DetailedAdapter(Context context,List<Details> details_array1,List<Details
             layout = v;
 //            txtHeader = (TextView) v.findViewById(R.id.firstLine);
 //            txtFooter = (TextView) v.findViewById(R.id.secondLine);
+
+
+
+
+//decalre the description text views
+
+
+
             event_name = (TextView) v.findViewById(R.id.event_name);
             first_prize_group = (TextView) v.findViewById(R.id.first_prize_group);
             second_prize_group = (TextView) v.findViewById(R.id.second_prize_group);
@@ -68,6 +96,52 @@ public DetailedAdapter(Context context,List<Details> details_array1,List<Details
             first_points = (TextView)v.findViewById(R.id.first_points);
             second_points = (TextView)v.findViewById(R.id.second_points);
             third_points = (TextView)v.findViewById(R.id.third_points);
+
+            firstPrize = (TextView)v.findViewById(R.id.firstPrize);
+            secondPrize = (TextView)v.findViewById(R.id.secondPrize);
+            thirdPrize = (TextView)v.findViewById(R.id.thirdPrize);
+
+            firstHouse = (TextView)v.findViewById(R.id.firstHouse);
+            secondHouse = (TextView)v.findViewById(R.id.secondHouse);
+            thirdHouse = (TextView)v.findViewById(R.id.thirdHouse);
+            
+            firstPoints = (TextView)v.findViewById(R.id.firstPoints);
+            secondPoints = (TextView)v.findViewById(R.id.secondPoints);
+            thirdPoints = (TextView)v.findViewById(R.id.thirdPoints);
+
+
+            firstPoints.setTypeface(tf);
+            secondPoints.setTypeface(tf);
+            thirdPoints.setTypeface(tf);
+
+
+            firstHouse.setTypeface(tf);
+            secondHouse.setTypeface(tf);
+            thirdHouse.setTypeface(tf);
+
+            firstPrize.setTypeface(tf);
+            secondPrize.setTypeface(tf);
+            thirdPrize.setTypeface(tf);
+
+
+            event_name.setTypeface(tf);
+            first_group.setTypeface(tf);
+            second_group.setTypeface(tf);
+            third_group.setTypeface(tf);
+
+
+            first_prize_group.setTypeface(tf);
+            second_prize_group.setTypeface(tf);
+            third_prize_group.setTypeface(tf);
+
+            first_points.setTypeface(tf);
+            second_points.setTypeface(tf);
+            third_points.setTypeface(tf);
+
+
+
+
+
 
         }
     }
@@ -121,6 +195,8 @@ public DetailedAdapter(Context context,List<Details> details_array1,List<Details
         holder.third_prize_group.setText(det3.getName());
         holder.third_group.setText(det3.getHouse());
         holder.third_points.setText(det3.getScore());
+
+
 
 
 

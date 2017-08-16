@@ -4,6 +4,7 @@ package com.roundmelon.jv.bharatham2k17;
  * Created by Joseph on 15/08/17.
  */
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -91,6 +92,8 @@ public class Score2 extends AppCompatActivity {
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
 
+    Typeface bebas = Typeface.createFromAsset(getAssets(),  "fonts/bebasneue.ttf");
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -107,6 +110,10 @@ public class Score2 extends AppCompatActivity {
         Firebase.setAndroidContext(this);
         final Firebase ref = new Firebase("https://bharatham-2k17.firebaseio.com/main/events");
         final Firebase final_ref = new Firebase("https://bharatham-2k17.firebaseio.com/main/final");
+
+
+
+
 
 
 
@@ -283,7 +290,7 @@ public class Score2 extends AppCompatActivity {
                         //creating adapter
                         //MyAdapter adapter = new MyAdapter(getApplicationContext(), details);
 
-                        mAdapter = new DetailedAdapter(getApplicationContext(),details_array1,details_array2,details_array3);
+                        mAdapter = new DetailedAdapter(getApplicationContext(),details_array1,details_array2,details_array3,bebas);
 
                         //adding adapter to recyclerview
                         //recyclerView.setAdapter(adapter);
