@@ -10,14 +10,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Score2">
+        <activity android:name=".Chart">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Splash" />
+        <activity android:name=".Score2" />
         <activity
             android:name=".HomeActivity"
             android:label="@string/title_activity_home"
@@ -47,7 +47,7 @@
         <activity android:name=".Video"></activity>
         <activity android:name=".Youtube"></activity>
         <activity android:name=".Updates"></activity>
-        <activity android:name=".Chart"></activity>
+        <activity android:name=".Splash"></activity>
 
 
 

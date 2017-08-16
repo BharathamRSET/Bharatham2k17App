@@ -43,7 +43,7 @@ public class Chart extends AppCompatActivity {
 
 
         //Creating firebase object
-        Firebase ref =new Firebase("https://bharatham-2k17.firebaseio.com/");
+        Firebase ref =new Firebase("https://bharatham-2k17.firebaseio.com/Score");
 
         //Getting values to store
         String aryans = "0";
@@ -87,7 +87,7 @@ public class Chart extends AppCompatActivity {
 
                     //Adding it to a string
 //                    String string = "Name: "+person.getName()+"\nAddress: "+person.getAddress()+"\n\n";
-                    //Log.d("Sna",house.getAll());
+//                    Log.d("Sna",house.getAll());
                     oneCharts = house.getAryans();
                     twoCharts = house.getMughals();
                     threeCharts = house.getRajputs();
@@ -168,15 +168,15 @@ public class Chart extends AppCompatActivity {
 
 
         BarDataSet barDataSet1 = new BarDataSet(valueSet1, "Aryans");
-        barDataSet1.setColor(Color.rgb(128,0,0));
+        barDataSet1.setColor(Color.rgb(131,76,183));
         BarDataSet barDataSet2 = new BarDataSet(valueSet2, "Mughals");
-        barDataSet2.setColor(Color.rgb(255,165,0));
+        barDataSet2.setColor(Color.rgb(233,84,3));
         BarDataSet barDataSet3 = new BarDataSet(valueSet3, "Rajputs");
-        barDataSet3.setColor(Color.rgb(255,255,0));
+        barDataSet3.setColor(Color.rgb(255,235,59));
         BarDataSet barDataSet4 = new BarDataSet(valueSet4, "Spartans");
-        barDataSet4.setColor(Color.rgb(255,0,255));
+        barDataSet4.setColor(Color.rgb(183,28,28));
         BarDataSet barDataSet5 = new BarDataSet(valueSet5, "Vikings");
-        barDataSet5.setColor(Color.rgb(0,191,255));
+        barDataSet5.setColor(Color.rgb(13,71,161));
 
 
 
