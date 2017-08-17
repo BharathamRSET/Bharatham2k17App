@@ -87,6 +87,10 @@
         <activity
             android:name=".Updates1"
             android:label="@string/title_activity_updates1"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Gallery1"
+            android:label="@string/title_activity_gallery1"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

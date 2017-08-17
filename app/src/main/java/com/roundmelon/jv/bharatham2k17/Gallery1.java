@@ -2,6 +2,7 @@ package com.roundmelon.jv.bharatham2k17;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -9,44 +10,56 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 import android.widget.Toast;
 
-import com.firebase.client.ChildEventListener;
-import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
-import com.firebase.client.FirebaseError;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class Video1 extends AppCompatActivity
+public class Gallery1 extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     final private int STORAGE_PERMISSION_CODE = 23;
-    ArrayList<String> mVideo = new ArrayList<>();
-    //String[] mUrl =new String[50];
-    ArrayList<String> mUrl = new ArrayList<>();
-    int count;
 
-    ListView listView1;
+    private DatabaseReference mDatabase;
+    private ProgressDialog progressDialog;
+    private List<Upload> uploads;
+
+    private RecyclerView recyclerView;
+
+    Image image;
+
+
+    private ArrayList<Image> images;
+
+
+    private RecyclerView.Adapter adapter;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_video1);
+        setContentView(R.layout.activity_gallery1);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -67,73 +80,85 @@ public class Video1 extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+
+        progressDialog = new ProgressDialog(this);
+
+        uploads = new ArrayList<>();
+
+        images = new ArrayList<>();
+
+        progressDialog.setMessage("Loading Images...");
+        progressDialog.show();
+        progressDialog.setCancelable(false);
+
+
         Firebase.setAndroidContext(this);
-        Firebase mRootRef = new Firebase("https://bharatham-2k17.firebaseio.com/");
-
-        listView1 = (ListView)findViewById(R.id.listView1);
-
-        Firebase videoRef = mRootRef.child("video_app");
+        final Firebase ref = new Firebase("https://bharatham-2k17.firebaseio.com/main/gallery_app");
+        mDatabase = FirebaseDatabase.getInstance().getReference("gallery");
 
 
-        final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,mVideo);
 
-        //final ArrayAdapter<String> arrayAdapter1 = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,mUrl);
+        recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+        recyclerView.setHasFixedSize(true);
+        //recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
 
-        listView1.setAdapter(arrayAdapter);
-
-
-        count = 0;
-        videoRef.addChildEventListener(new ChildEventListener() {
+        recyclerView.addOnItemTouchListener(new MyAdapter.RecyclerTouchListener(getApplicationContext(), recyclerView, new MyAdapter.ClickListener() {
             @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                String video = dataSnapshot.getValue(String.class);
-                String[] parts = video.split("!!!");
-                String title = parts[0];
-                String url = parts[1];
-                mVideo.add(title);
-                mUrl.add(count,url);
-                //mUrl[count] = url;
-                arrayAdapter.notifyDataSetChanged();
-                count++;
+            public void onClick(View view, int position) {
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("images", images);
+                bundle.putInt("position", position);
+
+                FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+                SlideshowDialogFragment newFragment = SlideshowDialogFragment.newInstance();
+                newFragment.setArguments(bundle);
+                newFragment.show(ft, "slideshow");
             }
 
             @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+            public void onLongClick(View view, int position) {
 
-                String video = dataSnapshot.getValue(String.class);
-                arrayAdapter.notifyDataSetChanged();
+            }
+        }));
 
+
+        mDatabase.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                //dismissing the progress dialog
+                Log.d("Gallery",snapshot.getChildrenCount()+"");
+
+                progressDialog.dismiss();
+                images.clear();
+                //iterating through all the values in database
+                for (DataSnapshot postSnapshot : snapshot.getChildren()) {
+                    Upload upload = postSnapshot.getValue(Upload.class);
+                    Log.d("Gallery",upload.getUrl());
+                    Image image = new Image();
+                    uploads.add(upload);
+                    image.setLarge(upload.getUrl());
+                    images.add(image);
+
+
+                }
+                //creating adapter
+                MyAdapter adapter = new MyAdapter(getApplicationContext(), uploads);
+
+                //adding adapter to recyclerview
+                recyclerView.setAdapter(adapter);
             }
 
             @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onCancelled(FirebaseError firebaseError) {
-
-            }
-        });
-
-
-
-        listView1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
-                Log.d("position", String.valueOf(i));
-                Intent videoItemIntent = new Intent(Video1.this,Youtube.class);
-                // videoItemIntent.putExtra("videourl",mUrl[i]);
-                videoItemIntent.putExtra("videourl",mUrl.get(i));
-                startActivity(videoItemIntent);
+            public void onCancelled(DatabaseError databaseError) {
+                progressDialog.dismiss();
             }
         });
+
+
+
 
 
 
@@ -230,7 +255,7 @@ public class Video1 extends AppCompatActivity
         else if (id == R.id.nav_schedule){
             Intent galleryIntent = new Intent(this,Updates1.class);
             startActivity(galleryIntent);
-            finish();
+
         }
         else if (id == R.id.nav_gallery){
             Intent galleryIntent = new Intent(this,Gallery1.class);

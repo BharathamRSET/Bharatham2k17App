@@ -197,8 +197,9 @@ public class HomeActivity extends AppCompatActivity
 
         }
         else if (id == R.id.nav_gallery){
-            Intent galleryIntent = new Intent(this,Gallery.class);
+            Intent galleryIntent = new Intent(this,Gallery1.class);
             startActivity(galleryIntent);
+            finish();
             //
         }else if (id == R.id.nav_facebook){
             try {
