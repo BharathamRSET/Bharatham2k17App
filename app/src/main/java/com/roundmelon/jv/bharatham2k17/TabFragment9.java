@@ -36,7 +36,7 @@ public class TabFragment9 extends Fragment {
         pDialog.setMessage("Updating...");
         pDialog.show();
         DownloadData downloadData = new DownloadData();
-        downloadData.execute("http://bharatham2k16all.blogspot.com/feeds/posts/default");
+        downloadData.execute("http://bharatham2k17.blogspot.com//feeds/posts/default/-/lh2");
 
 
 

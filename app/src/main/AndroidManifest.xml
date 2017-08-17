@@ -22,9 +22,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".Score2"
-            android:theme="@style/AppTheme.NoActionBar" />
+
         <activity
             android:name=".HomeActivity"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -55,43 +53,27 @@
         <activity
             android:name=".SelfieGallery"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".Gallery"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".Video"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".Youtube"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".Updates"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".Chart"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <!-- <activity android:name=".Web" -->
-        <!-- android:theme="@style/AppTheme.NoActionBar" /> -->
+
         <activity
             android:name=".Chart1"
-            android:label="@string/title_activity_chart1"
+            android:label="Live Scores"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Score"
-            android:label="@string/title_activity_score"
+            android:label="Updates"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Video1"
-            android:label="@string/title_activity_video1"
+            android:label="Videos"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Updates1"
-            android:label="@string/title_activity_updates1"
+            android:label="Schedule"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Gallery1"
-            android:label="@string/title_activity_gallery1"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:label="Gallery"
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>

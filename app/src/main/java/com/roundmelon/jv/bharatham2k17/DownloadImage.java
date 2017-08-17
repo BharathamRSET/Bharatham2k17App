@@ -125,7 +125,7 @@ public class DownloadImage extends AsyncTask<String, Void, Bitmap> {
         }
         if (success) {
             // Toast.makeText(context, "Already exists", Toast.LENGTH_LONG).show();
-            Toast.makeText(context,"Image Successfully Stored In Pictures", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(context,"Image Successfully Stored In Pictures", Toast.LENGTH_SHORT).show();
         } else {
             //Toast.makeText(context, "Error creating directory", Toast.LENGTH_LONG).show();
             return;

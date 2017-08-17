@@ -25,4 +25,14 @@
         app:srcCompat="@drawable/rm_full"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:id="@+id/power"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/imageView5"
+        android:layout_centerHorizontal="true"
+        android:text="Powered  By"
+        android:textColor="#696969"
+        android:textStyle="bold" />
 </RelativeLayout>

@@ -2,6 +2,7 @@ package com.roundmelon.jv.bharatham2k17;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -9,6 +10,7 @@ import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
@@ -19,7 +21,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
@@ -38,6 +39,8 @@ public class Score extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     final private int STORAGE_PERMISSION_CODE = 23;
+    private static long back_pressed;
+
 
     //final String[] items_group = new String[]{"WOLF_OF_KAKKANAD_STREET","GAME_OF_THRONES","NADAN_PATTU", "RANGOLI","MOVIE_SCENE_DUBBING", "MIME", "DRAMA", "TABLEAU", "THEMATIC_DANCE_GIRLS", "NOSTALGIA_GIRLS", "GROUP_DANCE_BOYS", "SYNCHRONIZATION", "THIRUVATHIRA", "QUIZ", "DEBATE_ENGLISH", "DEBATE_MALAYALAM", "SHORTFILM", "OLD_MALAYALAM_SONG_DUET", "FACE_PAINTING", "FLOWER_ARRANGEMENT", "GROUP_SONG_WESTERN", "GROUP_SONG_EASTERN", "UNPLUGGED", "LIGHT_MUSIC_VOCAL_MALE", "LIGHT_MUSIC_VOCAL_FEMALE", "HINDUSTANI_CLASSICAL_MUSIC", "CARNATIC_CLASSICAL_MUSIC","WESTERN_VOCAL_SOLO_MALE_FEMALE", "INSTRUMENTAL_MUSIC_STRINGS", "INSTRUMENTAL_MUSIC_KEYBOARD", "INSTRUMENT_PERCUSSION", "INSTRUMENT_WIND", "MONOACT", "MIMICRY", "FANCY_DRESS", "BHARATHANATYAM", "MOHINIYATTOM", "FOLK_DANCE", "ADAPT_TUNE", "ON_THE_SPOT_PAINTING", "PHOTOGRAPHY", "AKSHARASLOKAM", "RECITATION_MAL", "RECITATION_ENG", "KADHAPRASANGAM", "MOCK_PRESS", "ELOCUTION_ENG)", "ELOCUTION_MAL", "EXTEMPORE_ENG", "EXTEMPORE_MAL", "MANGLISH", "TURNAROUND", "MAPPILAPATT"};
     final String[] items_group = new String[]{"ADAPT_TUNE","AKSHARASLOKAM","BHARATHANATYAM","DEBATE_ENGLISH","DEBATE_MALAYALAM","DRAMA","ELOCUTION_ENG","ELOCUTION_MAL","EXTEMPORE_ENG","EXTEMPORE_MAL","FACE_PAINTING","FANCY_DRESS","FLOWER_ARRANGEMENT","FOLK_DANCE","GROUP_DANCE_BOYS","GROUP_SONG_EASTERN","GROUP_SONG_WESTERN","HINDUSTANI_CARNATIC_MUSIC","HINDUSTANI_CLASSICAL_MUSIC","INSTRUMENT_PERCUSSION","INSTRUMENT_WIND","INSTRUMENTAL_MUSIC_KEYBOARD","INSTRUMENTAL_MUSIC_STRINGS","KADHAPRASANGAM","LIGHT_MUSIC_VOCAL_FEMALE","LIGHT_MUSIC_VOCAL_MALE","MANGLISH","MAPPILAPATT","MIME","MIMICRY","MOCK_PRESS","MOHINIYATTOM","MONOACT","MOVIE_SCENE_DUBBING","NOSTALGIA_GIRLS","OLD_MALAYALAM_SONG_DUET","ON_THE_SPOT_PAINTING","PHOTOGRAPHY","QUIZ","RANGOLI","RECITATION_ENG","RECITATION_MAL","SHORTFILM","SYNCHRONIZATION","TABLEAU","THEMATIC_DANCE_GIRLS","THIRUVATHIRA","TURNAROUND","UNPLUGGED","WESTERN_VOCAL_SOLO_MALE_FEMALE","NADAN_PATTU","GAME_OF_THRONES","BHARATHAM_NEWSLETTER","WOLF_OF_KAKKANAD_STREET","POETRY_WRITING_MAL","ESSAY_WRITING_ENG","POSTER_DESIGNING","POETRY_WRITING_ENG","SHORT_STORY_MAL","CARTOON_DRAWING","FILM_REVIEW","ESSAY_WRITING_MAL","PENCIL_DRAWING","SHORT_STORY","PAPER_COLLAGE","GRAFETTI_ART"};
@@ -66,6 +69,7 @@ public class Score extends AppCompatActivity
     private RecyclerView.LayoutManager mLayoutManager;
 
     Typeface bebas;
+    ProgressDialog pDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,7 +104,7 @@ public class Score extends AppCompatActivity
         mLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(mLayoutManager);
 
-//        pDialog = new ProgressDialog(this);
+        pDialog = new ProgressDialog(this);
 
         Log.d("started",".......");
 
@@ -115,7 +119,9 @@ public class Score extends AppCompatActivity
 
 
 
-
+                pDialog.setMessage("Updating Scores...");
+                pDialog.setCancelable(false);
+                pDialog.show();
 
 
         final_ref.addValueEventListener(new ValueEventListener() {
@@ -163,31 +169,34 @@ public class Score extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
-        }
+//            super.onBackPressed();
+
+            if (back_pressed + 2000 > System.currentTimeMillis()) super.onBackPressed();
+            else Snackbar.make(findViewById(R.id.rootView),"Press Once More To Exit.", Snackbar.LENGTH_SHORT).show();
+            back_pressed = System.currentTimeMillis();        }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.home, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        // Inflate the menu; this adds items to the action bar if it is present.
+//        getMenuInflater().inflate(R.menu.home, menu);
+//        return true;
+//    }
+//
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        // Handle action bar item clicks here. The action bar will
+//        // automatically handle clicks on the Home/Up button, so long
+//        // as you specify a parent activity in AndroidManifest.xml.
+//        int id = item.getItemId();
+//
+//        //noinspection SimplifiableIfStatement
+//        if (id == R.id.action_settings) {
+//            return true;
+//        }
+//
+//        return super.onOptionsItemSelected(item);
+//    }
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
@@ -432,6 +441,12 @@ public class Score extends AppCompatActivity
                         //adding adapter to recyclerview
                         //recyclerView.setAdapter(adapter);
                         recyclerView.setAdapter(mAdapter);
+
+                        if(pDialog.isShowing()){
+                            pDialog.dismiss();
+                        }
+
+
 
                     }
                 }

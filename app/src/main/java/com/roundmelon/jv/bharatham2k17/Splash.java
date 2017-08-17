@@ -1,19 +1,26 @@
 package com.roundmelon.jv.bharatham2k17;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.text.Layout;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 public class Splash extends AppCompatActivity {
+    TextView power;
+    Typeface bebas;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+
+        power = (TextView)findViewById(R.id.power);
+        bebas = Typeface.createFromAsset(getResources().getAssets(),  "fonts/bebasneue.ttf");
+        power.setTypeface(bebas);
 
 
 
