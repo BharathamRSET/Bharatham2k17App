@@ -68,6 +68,7 @@ public class Chart extends AppCompatActivity {
 //          ref.child("House");
 
         pDialog.setMessage("Updating Scores...");
+        pDialog.setCancelable(false);
         pDialog.show();
 
 

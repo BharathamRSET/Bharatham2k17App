@@ -1,6 +1,7 @@
 package com.roundmelon.jv.bharatham2k17;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -29,10 +30,11 @@ public class Fb extends AppCompatActivity {
     Spinner drop_down;
     int flag = 0;
     int choice;
-    String option = "Select Your Choice";
+    String option = "Option";
     TextView selectBadge;
     private CallbackManager callbackManager;
     private AccessTokenTracker accessTokenTracker;
+    Typeface bebas;
 
     final String[] spinner_items_group = new String[]{"Option","Bharatham 2k17","Aryans","Mughals","Rajputs","Spartans","Vikings"};
 
@@ -57,13 +59,15 @@ public class Fb extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fb);
 
+
+        bebas = Typeface.createFromAsset(getResources().getAssets(),  "fonts/bebasneue.ttf");
         drop_down = (Spinner)findViewById(R.id.dropdown);
         selectBadge = (TextView)findViewById(R.id.selectBadge);
+        selectBadge.setTypeface(bebas);
 
 
-        final ArrayAdapter<String> adapterGroup = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, spinner_items_group);
+        final ArrayAdapter<String> adapterGroup = new ArrayAdapter<String>(this, R.layout.spinnner_item, spinner_items_group);
         drop_down.setAdapter(adapterGroup);
-
         FacebookSdk.sdkInitialize(getApplicationContext());
         callbackManager = CallbackManager.Factory.create();
         accessTokenTracker = new AccessTokenTracker() {
@@ -171,21 +175,27 @@ public class Fb extends AppCompatActivity {
 
 
     private void nextActivity(Profile profile,int flag){
-        if(profile != null){
+        if(profile != null) {
             Intent main = new Intent(Fb.this, Badge.class);
             main.putExtra("name", profile.getFirstName());
             main.putExtra("surname", profile.getLastName());
-            main.putExtra("imageUrl", profile.getProfilePictureUri(400,400).toString());
-            if(option.equalsIgnoreCase("Select Your Choice")){
-                Toast.makeText(Fb.this, "Please Select Your Badge!", Toast.LENGTH_SHORT).show();
-            }else{
-               main.putExtra("choice",choice);
-                Log.d("choice..",Integer.toString(choice));
+            main.putExtra("imageUrl", profile.getProfilePictureUri(400, 400).toString());
+            if (flag == 1) {
+
+
+            if (option.equalsIgnoreCase("Option")) {
+                Toast.makeText(Fb.this, "Please Select A Badge!", Toast.LENGTH_SHORT).show();
+            } else {
+                main.putExtra("choice", choice);
+                Log.d("choice..", Integer.toString(choice));
                 startActivity(main);
                 finish();
 
             }
 
+        }else{
+                Toast.makeText(this, "Please Select A Badge!", Toast.LENGTH_SHORT).show();
+            }
         }
     }
 

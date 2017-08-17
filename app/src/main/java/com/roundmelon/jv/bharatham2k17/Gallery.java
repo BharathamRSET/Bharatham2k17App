@@ -52,6 +52,7 @@ public class Gallery extends AppCompatActivity {
 
         progressDialog.setMessage("Loading Images...");
         progressDialog.show();
+        progressDialog.setCancelable(false);
 
 
         Firebase.setAndroidContext(this);
@@ -91,7 +92,7 @@ public class Gallery extends AppCompatActivity {
             public void onDataChange(DataSnapshot snapshot) {
                 //dismissing the progress dialog
                 Log.d("Gallery",snapshot.getChildrenCount()+"");
-                progressDialog.setCancelable(false);
+
                 progressDialog.dismiss();
                 images.clear();
                 //iterating through all the values in database

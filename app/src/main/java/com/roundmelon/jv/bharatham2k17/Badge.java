@@ -53,6 +53,22 @@ public class Badge extends AppCompatActivity {
         Log.d("ChoiceBadge",Integer.toString(choice));
 
 
+        Log.d("Choice click",Integer.toString(choice));
+        if(choice == 1) {
+            fileName = "/Bharatham 2k17/profile_picture_1.png";
+        }else if(choice == 2){
+            fileName = "/Bharatham 2k17/profile_picture_2.png";
+        }else if(choice == 3){
+            fileName = "/Bharatham 2k17/profile_picture_3.png";
+        }else if(choice == 4){
+            fileName = "/Bharatham 2k17/profile_picture_4.png";
+        }else if(choice == 5){
+            fileName = "/Bharatham 2k17/profile_picture_5.png";
+        }else if(choice == 6){
+            fileName = "/Bharatham 2k17/profile_picture_6.png";
+        }
+
+
         TextView  textView = (TextView)findViewById(R.id.textView);
         TextView nameView = (TextView)findViewById(R.id.nameAndSurname);
 
@@ -125,19 +141,20 @@ public class Badge extends AppCompatActivity {
             public void onClick(View v) {
                 String completePath = Environment.getExternalStoragePublicDirectory(
                         Environment.DIRECTORY_PICTURES).getPath();
-                if(choice == 1) {
-                    fileName = "/Bharatham 2k17/profile_picture_1.png";
-                }else if(choice == 2){
-                    fileName = "/Bharatham 2k17/profile_picture_2.png";
-                }else if(choice == 3){
-                    fileName = "/Bharatham 2k17/profile_picture_3.png";
-                }else if(choice == 4){
-                    fileName = "/Bharatham 2k17/profile_picture_4.png";
-                }else if(choice == 5){
-                    fileName = "/Bharatham 2k17/profile_picture_5.png";
-                }else if(choice == 6){
-                    fileName = "/Bharatham 2k17/profile_picture_6.png";
-                }
+//                Log.d("Choice click",Integer.toString(choice));
+//                if(choice == 1) {
+//                    fileName = "/Bharatham 2k17/profile_picture_1.png";
+//                }else if(choice == 2){
+//                    fileName = "/Bharatham 2k17/profile_picture_2.png";
+//                }else if(choice == 3){
+//                    fileName = "/Bharatham 2k17/profile_picture_3.png";
+//                }else if(choice == 4){
+//                    fileName = "/Bharatham 2k17/profile_picture_4.png";
+//                }else if(choice == 5){
+//                    fileName = "/Bharatham 2k17/profile_picture_5.png";
+//                }else if(choice == 6){
+//                    fileName = "/Bharatham 2k17/profile_picture_6.png";
+//                }
                 Intent sharingIntent = new Intent(Intent.ACTION_SEND);
                 Uri imgUri = Uri.parse(completePath+fileName);
                 Log.d("LINK",imgUri.getPath());

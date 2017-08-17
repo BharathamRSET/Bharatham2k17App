@@ -52,27 +52,64 @@ public class DownloadImage extends AsyncTask<String, Void, Bitmap> {
     protected void onPostExecute(Bitmap result) {
         Bitmap bigImage = result;
 
+
         if(choice == 1){
             Bitmap smallImage = BitmapFactory.decodeResource(context.getResources(), R.drawable.dp);
+            Bitmap mergedImages = createSingleImageFromMultipleImages(bigImage, smallImage);
+            bmImage.setImageBitmap(mergedImages);
+            writeToFile(mergedImages);
+            progressDialog.dismiss();
+            return;
+
         }else if(choice == 2){
             Bitmap smallImage = BitmapFactory.decodeResource(context.getResources(), R.drawable.dp1);
+            Bitmap mergedImages = createSingleImageFromMultipleImages(bigImage, smallImage);
+            bmImage.setImageBitmap(mergedImages);
+            writeToFile(mergedImages);
+            progressDialog.dismiss();
+            return;
+
         }else if(choice == 3){
             Bitmap smallImage = BitmapFactory.decodeResource(context.getResources(), R.drawable.dp2);
+            Bitmap mergedImages = createSingleImageFromMultipleImages(bigImage, smallImage);
+            bmImage.setImageBitmap(mergedImages);
+            writeToFile(mergedImages);
+            progressDialog.dismiss();
+            return;
+
         }else if(choice == 4){
             Bitmap smallImage = BitmapFactory.decodeResource(context.getResources(), R.drawable.dp3);
+            Bitmap mergedImages = createSingleImageFromMultipleImages(bigImage, smallImage);
+            bmImage.setImageBitmap(mergedImages);
+            writeToFile(mergedImages);
+            progressDialog.dismiss();
+            return;
+
         }else if(choice == 5){
             Bitmap smallImage = BitmapFactory.decodeResource(context.getResources(), R.drawable.dp4);
+            Bitmap mergedImages = createSingleImageFromMultipleImages(bigImage, smallImage);
+            bmImage.setImageBitmap(mergedImages);
+            writeToFile(mergedImages);
+            progressDialog.dismiss();
+            return;
+
         }else if(choice == 6){
             Bitmap smallImage = BitmapFactory.decodeResource(context.getResources(), R.drawable.dp5);
+            Bitmap mergedImages = createSingleImageFromMultipleImages(bigImage, smallImage);
+            bmImage.setImageBitmap(mergedImages);
+            writeToFile(mergedImages);
+            progressDialog.dismiss();
+            return;
+
         }
 
-        Bitmap smallImage = BitmapFactory.decodeResource(context.getResources(), R.drawable.dp);
-        Bitmap mergedImages = createSingleImageFromMultipleImages(bigImage, smallImage);
+        //Bitmap smallImage = BitmapFactory.decodeResource(context.getResources(), R.drawable.dp);
+        //Bitmap mergedImages = createSingleImageFromMultipleImages(bigImage, smallImage);
 
-        bmImage.setImageBitmap(mergedImages);
-        writeToFile(mergedImages);
-        progressDialog.dismiss();
-        return;
+//        bmImage.setImageBitmap(mergedImages);
+//        writeToFile(mergedImages);
+//        progressDialog.dismiss();
+//        return;
 
 
     }

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Bharatham2k17</string>
+    <string name="app_name">Bharatham</string>
     <string name="title_activity_home">HomeActivity</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
