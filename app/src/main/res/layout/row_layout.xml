@@ -78,7 +78,6 @@
         android:id="@+id/third_prize_group"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/description"
         android:layout_alignWithParentIfMissing="true"
         android:layout_below="@+id/third_prize"
         android:layout_marginStart="114dp"
