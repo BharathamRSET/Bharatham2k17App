@@ -2,10 +2,11 @@ package com.roundmelon.jv.bharatham2k17;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Typeface;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -16,31 +17,43 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.ViewFlipper;
 
-public class HomeActivity extends AppCompatActivity
+import com.firebase.client.DataSnapshot;
+import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
+import com.firebase.client.ValueEventListener;
+import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.BarDataSet;
+import com.github.mikephil.charting.data.BarEntry;
+
+import java.util.ArrayList;
+
+public class Chart1 extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    Animation fade_in, fade_out;
-    ViewFlipper viewFlipper;
-    ImageView mImageView;
-    TextView textView1,textView2,textView3,textView4,textView5;
-
-    Typeface bebas;
-
     final private int STORAGE_PERMISSION_CODE = 23;
+    float oneChart;
+    float twoChart;
+    float threeChart;
+    float fourChart;
+    float fiveChart;
+    String oneCharts;
+    String twoCharts;
+    String threeCharts;
+    String fourCharts;
+    String fiveCharts;
+    BarChart chart;
+    private ProgressDialog pDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+        setContentView(R.layout.activity_chart1);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -53,7 +66,6 @@ public class HomeActivity extends AppCompatActivity
 //            }
 //        });
 
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -63,44 +75,105 @@ public class HomeActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-//        viewFlipper = (ViewFlipper) this.findViewById(R.id.bckgrndViewFlipper1);
-        fade_in = AnimationUtils.loadAnimation(this,
-                android.R.anim.slide_in_left);
-        fade_out = AnimationUtils.loadAnimation(this,
-                android.R.anim.slide_out_right);
-//        viewFlipper.setInAnimation(fade_in);
-//        viewFlipper.setOutAnimation(fade_out);
-////sets auto flipping
-//        viewFlipper.setAutoStart(true);
-//        viewFlipper.setFlipInterval(2500);
-//        viewFlipper.startFlipping();
+
+        Firebase.setAndroidContext(this);
+        pDialog = new ProgressDialog(this);
+
+
+
+        //Creating firebase object
+        Firebase ref =new Firebase("https://bharatham-2k17.firebaseio.com/Score");
+
+        //Getting values to store
+        String aryans = "0";
+        String mughals = "0";
+        String rajputs = "0";
+        String spartans = "0";
+        String vikings = "0";
+
+        //Creating Person object
+        House house = new House();
+
+        //Adding values
+        house.setAryans(aryans);
+        house.setMughals(mughals);
+        house.setRajputs(rajputs);
+        house.setSpartans(spartans);
+        house.setVikings(vikings);
+
+
+        //Storing values to firebase
+//        ref.child("House").setValue(house);
+//          ref.child("House");
+
+        pDialog.setMessage("Updating Scores...");
+        pDialog.setCancelable(false);
+        pDialog.show();
 
 
 
 
-        textView1 = (TextView)findViewById(R.id.textView1);
-        textView2 = (TextView)findViewById(R.id.textView2);
-        textView3 = (TextView)findViewById(R.id.textView3);
-        textView4 = (TextView)findViewById(R.id.textView4);
-        textView5 = (TextView)findViewById(R.id.textView5);
-
-
-        bebas = Typeface.createFromAsset(getResources().getAssets(),  "fonts/bebasneue.ttf");
-        textView1.setTypeface(bebas);
-        textView2.setTypeface(bebas);
-        textView3.setTypeface(bebas);
-        textView4.setTypeface(bebas);
-        textView5.setTypeface(bebas);
 
 
 
+        //Value event listener for realtime data update
+        ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                Log.d("Snapshot",snapshot.getChildrenCount()+"");
+                for (DataSnapshot postSnapshot : snapshot.getChildren()) {
+                    //Getting the data from snapshot
+                    House house = postSnapshot.getValue(House.class);
+
+                    //Adding it to a string
+//                    String string = "Name: "+person.getName()+"\nAddress: "+person.getAddress()+"\n\n";
+//                    Log.d("Sna",house.getAll());
+                    oneCharts = house.getAryans();
+                    twoCharts = house.getMughals();
+                    threeCharts = house.getRajputs();
+                    fourCharts = house.getSpartans();
+                    fiveCharts = house.getVikings();
+
+
+                    oneChart = Float.parseFloat(oneCharts);
+                    twoChart = Float.parseFloat(twoCharts);
+                    threeChart = Float.parseFloat(threeCharts);
+                    fourChart = Float.parseFloat(fourCharts);
+                    fiveChart = Float.parseFloat(fiveCharts);
+
+                    if(pDialog.isShowing())
+                        pDialog.dismiss();
+                    BarData data = new BarData(getXAxisValues(), getDataSet());
+                    chart.setData(data);
+                    chart.setDescription("");
+                    chart.animateY(2000);
+                    chart.invalidate();
+
+                    //Displaying it on textview
+//                    textViewPersons.setText(string);
+                }
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+                System.out.println("The read failed: " + firebaseError.getMessage());
+
+
+            }
+        });
+
+
+        chart = (BarChart) findViewById(R.id.chart);
+
+        BarData data = new BarData(getXAxisValues(), getDataSet());
+        chart.setData(data);
+        chart.setDescription("");
+        chart.animateY(2000);
+        chart.invalidate();
 
 
 
     }
-
-
-
 
     @Override
     public void onBackPressed() {
@@ -137,13 +210,14 @@ public class HomeActivity extends AppCompatActivity
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
+        // Handle navigation view item clicks here
         int id = item.getItemId();
 
         if (id == R.id.nav_home) {
             Intent homeIntent = new Intent(this,HomeActivity.class);
             startActivity(homeIntent);
             finish();
+
         } else if (id == R.id.nav_scores) {
             //Intent scoreIntet = new Intent(this,Score2.class);
             Intent scoreIntet = new Intent(this,Chart1.class);
@@ -269,4 +343,67 @@ public class HomeActivity extends AppCompatActivity
 
         }
     }
+
+
+
+
+
+    private ArrayList<BarDataSet> getDataSet() {
+        ArrayList<BarDataSet> dataSets = null;
+
+        ArrayList<BarEntry> valueSet1 = new ArrayList<>();
+        BarEntry v1e1 = new BarEntry(oneChart, 0);
+        valueSet1.add(v1e1);
+
+
+        ArrayList<BarEntry> valueSet2 = new ArrayList<>();
+        BarEntry v2e1 = new BarEntry(twoChart, 0);
+        valueSet2.add(v2e1);
+
+        ArrayList<BarEntry> valueSet3 = new ArrayList<>();
+        BarEntry v3e1 = new BarEntry(threeChart, 0);
+        valueSet3.add(v3e1);
+
+        ArrayList<BarEntry> valueSet4 = new ArrayList<>();
+        BarEntry v4e1 = new BarEntry(fourChart, 0);
+        valueSet4.add(v4e1);
+
+        ArrayList<BarEntry> valueSet5 = new ArrayList<>();
+        BarEntry v5e1 = new BarEntry(fiveChart, 0);
+        valueSet5.add(v5e1);
+
+
+
+
+
+        BarDataSet barDataSet1 = new BarDataSet(valueSet1, "Aryans");
+        barDataSet1.setColor(Color.rgb(131,76,183));
+        BarDataSet barDataSet2 = new BarDataSet(valueSet2, "Mughals");
+        barDataSet2.setColor(Color.rgb(233,84,3));
+        BarDataSet barDataSet3 = new BarDataSet(valueSet3, "Rajputs");
+        barDataSet3.setColor(Color.rgb(255,235,59));
+        BarDataSet barDataSet4 = new BarDataSet(valueSet4, "Spartans");
+        barDataSet4.setColor(Color.rgb(183,28,28));
+        BarDataSet barDataSet5 = new BarDataSet(valueSet5, "Vikings");
+        barDataSet5.setColor(Color.rgb(13,71,161));
+
+
+
+
+        dataSets = new ArrayList<>();
+        dataSets.add(barDataSet1);
+        dataSets.add(barDataSet2);
+        dataSets.add(barDataSet3);
+        dataSets.add(barDataSet4);
+        dataSets.add(barDataSet5);
+        return dataSets;
+    }
+
+    private ArrayList<String> getXAxisValues() {
+        ArrayList<String> xAxis = new ArrayList<>();
+        xAxis.add("");
+
+        return xAxis;
+    }
+
 }

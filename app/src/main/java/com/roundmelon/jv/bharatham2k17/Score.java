@@ -1,16 +1,27 @@
 package com.roundmelon.jv.bharatham2k17;
 
-/**
- * Created by Joseph on 15/08/17.
- */
-
+import android.Manifest;
+import android.app.Activity;
+import android.content.ActivityNotFoundException;
+import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Typeface;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.NavigationView;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.widget.TextView;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
@@ -23,10 +34,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+public class Score extends AppCompatActivity
+        implements NavigationView.OnNavigationItemSelectedListener {
 
-public class Score2 extends AppCompatActivity {
-
-//    private ProgressDialog pDialog;
+    final private int STORAGE_PERMISSION_CODE = 23;
 
     //final String[] items_group = new String[]{"WOLF_OF_KAKKANAD_STREET","GAME_OF_THRONES","NADAN_PATTU", "RANGOLI","MOVIE_SCENE_DUBBING", "MIME", "DRAMA", "TABLEAU", "THEMATIC_DANCE_GIRLS", "NOSTALGIA_GIRLS", "GROUP_DANCE_BOYS", "SYNCHRONIZATION", "THIRUVATHIRA", "QUIZ", "DEBATE_ENGLISH", "DEBATE_MALAYALAM", "SHORTFILM", "OLD_MALAYALAM_SONG_DUET", "FACE_PAINTING", "FLOWER_ARRANGEMENT", "GROUP_SONG_WESTERN", "GROUP_SONG_EASTERN", "UNPLUGGED", "LIGHT_MUSIC_VOCAL_MALE", "LIGHT_MUSIC_VOCAL_FEMALE", "HINDUSTANI_CLASSICAL_MUSIC", "CARNATIC_CLASSICAL_MUSIC","WESTERN_VOCAL_SOLO_MALE_FEMALE", "INSTRUMENTAL_MUSIC_STRINGS", "INSTRUMENTAL_MUSIC_KEYBOARD", "INSTRUMENT_PERCUSSION", "INSTRUMENT_WIND", "MONOACT", "MIMICRY", "FANCY_DRESS", "BHARATHANATYAM", "MOHINIYATTOM", "FOLK_DANCE", "ADAPT_TUNE", "ON_THE_SPOT_PAINTING", "PHOTOGRAPHY", "AKSHARASLOKAM", "RECITATION_MAL", "RECITATION_ENG", "KADHAPRASANGAM", "MOCK_PRESS", "ELOCUTION_ENG)", "ELOCUTION_MAL", "EXTEMPORE_ENG", "EXTEMPORE_MAL", "MANGLISH", "TURNAROUND", "MAPPILAPATT"};
     final String[] items_group = new String[]{"ADAPT_TUNE","AKSHARASLOKAM","BHARATHANATYAM","DEBATE_ENGLISH","DEBATE_MALAYALAM","DRAMA","ELOCUTION_ENG","ELOCUTION_MAL","EXTEMPORE_ENG","EXTEMPORE_MAL","FACE_PAINTING","FANCY_DRESS","FLOWER_ARRANGEMENT","FOLK_DANCE","GROUP_DANCE_BOYS","GROUP_SONG_EASTERN","GROUP_SONG_WESTERN","HINDUSTANI_CARNATIC_MUSIC","HINDUSTANI_CLASSICAL_MUSIC","INSTRUMENT_PERCUSSION","INSTRUMENT_WIND","INSTRUMENTAL_MUSIC_KEYBOARD","INSTRUMENTAL_MUSIC_STRINGS","KADHAPRASANGAM","LIGHT_MUSIC_VOCAL_FEMALE","LIGHT_MUSIC_VOCAL_MALE","MANGLISH","MAPPILAPATT","MIME","MIMICRY","MOCK_PRESS","MOHINIYATTOM","MONOACT","MOVIE_SCENE_DUBBING","NOSTALGIA_GIRLS","OLD_MALAYALAM_SONG_DUET","ON_THE_SPOT_PAINTING","PHOTOGRAPHY","QUIZ","RANGOLI","RECITATION_ENG","RECITATION_MAL","SHORTFILM","SYNCHRONIZATION","TABLEAU","THEMATIC_DANCE_GIRLS","THIRUVATHIRA","TURNAROUND","UNPLUGGED","WESTERN_VOCAL_SOLO_MALE_FEMALE","NADAN_PATTU","GAME_OF_THRONES","BHARATHAM_NEWSLETTER","WOLF_OF_KAKKANAD_STREET","POETRY_WRITING_MAL","ESSAY_WRITING_ENG","POSTER_DESIGNING","POETRY_WRITING_ENG","SHORT_STORY_MAL","CARTOON_DRAWING","FILM_REVIEW","ESSAY_WRITING_MAL","PENCIL_DRAWING","SHORT_STORY","PAPER_COLLAGE","GRAFETTI_ART"};
@@ -42,52 +53,13 @@ public class Score2 extends AppCompatActivity {
     int[] thirdNo = new int[100];
 
     private DatabaseReference mDatabase;
-
-    //private List<Details> details;
-    private ArrayList<String> name1;
-    private ArrayList<String> eventName1;
-    private ArrayList<String> className1;
-    private ArrayList<String> house1;
-    private ArrayList<String> position1;
-    private ArrayList<String> score1;
-
     private List<Details> details_array1;
-
-
-    private ArrayList<String> name2;
-    private ArrayList<String> eventName2;
-    private ArrayList<String> className2;
-    private ArrayList<String> house2;
-    private ArrayList<String> position2;
-    private ArrayList<String> score2;
     private List<Details> details_array2;
-
-    private ArrayList<String> name3;
-    private ArrayList<String> eventName3;
-    private ArrayList<String> className3;
-    private ArrayList<String> house3;
-    private ArrayList<String> position3;
-    private ArrayList<String> score3;
     private List<Details> details_array3;
-
-
-
-    int firstData, secondData, thirdData;
-
-
-    //use ____ in event names not spaces
-//    String[][] GOne = new String[3][3];
-//    String[][] GTwo = new String[3][3];
-//    String[][] GThree = new String[3][3];
-//    String[][] GFour = new String[3][3];
-//    String[][] GFive = new String[3][3];
 
     String[][] data = new String[100][3];
 
     int[] dataFlag = new int[6];
-
-    TextView editText;
-
 
     private RecyclerView recyclerView;
     private RecyclerView.Adapter mAdapter;
@@ -99,6 +71,28 @@ public class Score2 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_score);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+//        fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+//            }
+//        });
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.setDrawerListener(toggle);
+        toggle.syncState();
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+
+
 
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
@@ -146,20 +140,6 @@ public class Score2 extends AppCompatActivity {
 
                 }
 
-//                final_status[1] = Integer.parseInt(map.get("GTwo"));
-//                Log.d("Final 1",Integer.toString(final_status[1]));
-//
-//
-//                final_status[2] = Integer.parseInt(map.get("GThree"));
-//                Log.d("Final 2",Integer.toString(final_status[2]));
-//
-//
-//                final_status[3] = Integer.parseInt(map.get("GFour"));
-//                Log.d("Final 3",Integer.toString(final_status[3]));
-//
-//
-//                final_status[4] = Integer.parseInt(map.get("GFive"));
-//                Log.d("Final 4",Integer.toString(final_status[4]));
 
                 trigger();
 
@@ -173,8 +153,177 @@ public class Score2 extends AppCompatActivity {
         });
 
 
+
+
     }
 
+    @Override
+    public void onBackPressed() {
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.home, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    @SuppressWarnings("StatementWithEmptyBody")
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+
+        int id = item.getItemId();
+
+        if (id == R.id.nav_home) {
+            Intent homeIntent = new Intent(this,HomeActivity.class);
+            startActivity(homeIntent);
+            finish();
+        } else if (id == R.id.nav_scores) {
+            //Intent scoreIntet = new Intent(this,Score2.class);
+            Intent scoreIntet = new Intent(this,Chart1.class);
+            startActivity(scoreIntet);
+            finish();
+
+        }
+        else if (id == R.id.nav_updates) {
+            Intent updateIntent = new Intent(this,Score.class);
+            startActivity(updateIntent);
+            finish();
+
+        }
+        else if (id == R.id.nav_badge) {
+            if(isWriteStorageAllowed()){
+
+                Intent fbIntent = new Intent(this,Fb.class);
+                startActivity(fbIntent);
+
+
+            }
+
+            //If the app has not the permission then asking for the permission
+            requestStoragePermission();
+
+        }
+//        else if (id == R.id.nav_selfie) {
+//            Intent selfieIntent = new Intent(this,Selfie.class);
+//            startActivity(selfieIntent);
+//
+//        } else if (id == R.id.nav_selfiegallery) {
+//            Intent  selfieGalleryintent = new Intent(this,SelfieGallery.class);
+//            startActivity(selfieGalleryintent);
+//        }
+        else if (id == R.id.nav_videos){
+            Intent galleryIntent = new Intent(this,Video.class);
+            startActivity(galleryIntent);
+            //
+        }
+        else if (id == R.id.nav_website){
+//            Intent galleryIntent = new Intent(this,Web.class);
+//            startActivity(galleryIntent);
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.bharatham2k17.com")));
+            //
+        }
+        else if (id == R.id.nav_schedule){
+            Intent galleryIntent = new Intent(this,Updates.class);
+            startActivity(galleryIntent);
+
+        }
+        else if (id == R.id.nav_gallery){
+            Intent galleryIntent = new Intent(this,Gallery.class);
+            startActivity(galleryIntent);
+            //
+        }else if (id == R.id.nav_facebook){
+            try {
+
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("fb://page/1855389091393568"));
+                startActivity(intent);
+            } catch (Exception e) {
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.facebook.com/bharatham2017")));
+            }
+        }else if(id == R.id.nav_instagram){
+            //change page id
+            Uri uri = Uri.parse("http://instagram.com/_u/bharatham2017");
+            Intent likeIng = new Intent(Intent.ACTION_VIEW, uri);
+
+            likeIng.setPackage("com.instagram.android");
+
+            try {
+                startActivity(likeIng);
+            } catch (ActivityNotFoundException e) {
+                startActivity(new Intent(Intent.ACTION_VIEW,
+                        Uri.parse("http://instagram.com/bharatham2017/?hl=en")));
+            }
+        }
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
+    }
+    private boolean isWriteStorageAllowed() {
+        //Getting the permission status
+        int result = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+
+        //If permission is granted returning true
+        if (result == PackageManager.PERMISSION_GRANTED)
+            return true;
+
+        //If permission is not granted returning false
+        return false;
+    }
+    //Requesting permission
+    private void requestStoragePermission(){
+
+        if (ActivityCompat.shouldShowRequestPermissionRationale((Activity)this,Manifest.permission.WRITE_EXTERNAL_STORAGE)){
+
+            Toast.makeText(this,"This permission is required to store the badge on your device.",Toast.LENGTH_LONG).show();
+        }
+
+        ActivityCompat.requestPermissions((Activity)this,new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},STORAGE_PERMISSION_CODE);
+    }
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case STORAGE_PERMISSION_CODE : {
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+                    Intent fbIntent = new Intent(this,Fb.class);
+                    startActivity(fbIntent);
+
+
+                } else {
+                    Toast.makeText(this,"Please grant the permission to access this feature.",Toast.LENGTH_LONG).show();
+
+                }
+                return;
+            }
+
+
+        }
+    }
 
     public void trigger(){
 
@@ -205,29 +354,7 @@ public class Score2 extends AppCompatActivity {
                         //dismissing the progress dialog
                         Log.d("Events", dataSnapshot.child(items_group[j]).getChildrenCount() + "");
                         //progressDialog.dismiss();
-//                        name1.clear();
-//                        eventName1.clear();
-//                        className1.clear();
-//                        house1.clear();
-//                        position1.clear();
-//                        house1.clear();
-//                        score1.clear();
-//
-//                        name2.clear();
-//                        eventName2.clear();
-//                        className2.clear();
-//                        house2.clear();
-//                        position2.clear();
-//                        house2.clear();
-//                        score2.clear();
-//
-//                        name3.clear();
-//                        eventName3.clear();
-//                        className3.clear();
-//                        house3.clear();
-//                        position3.clear();
-//                        house3.clear();
-//                        score3.clear();
+
 
 
                         //iterating through all the values in database
@@ -324,5 +451,5 @@ public class Score2 extends AppCompatActivity {
 
 
     }
-
 }
+

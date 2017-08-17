@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_home_black_24dp"
+            android:title="Home" />
+        <item
+            android:id="@+id/nav_scores"
+            android:icon="@drawable/ic_timeline_black_24dp"
+            android:title="Live Scores" />
+
+        //to be shown next update
+        <item
+            android:id="@+id/nav_updates"
+            android:icon="@drawable/ic_featured_play_list_black_24dp"
+            android:title="Updates" />
+        <item
+            android:id="@+id/nav_badge"
+            android:icon="@drawable/ic_assignment_ind_black_24dp"
+            android:title="Bharatham Badge" />
+        <item
+            android:id="@+id/nav_schedule"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="Schedule" />
+        <item
+            android:id="@+id/nav_gallery"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="Gallery" />
+        //next update
+        <!--<item-->
+        <!--android:id="@+id/nav_selfie"-->
+        <!--android:icon="@drawable/ic_menu_manage"-->
+        <!--android:title="Selfie" />-->
+        //next update
+        <!--<item-->
+        <!--android:id="@+id/nav_selfiegallery"-->
+        <!--android:icon="@drawable/ic_menu_manage"-->
+        <!--android:title="Selfie Gallery" />-->
+
+
+        <item
+            android:id="@+id/nav_videos"
+            android:icon="@drawable/ic_video_library_black_24dp"
+            android:title="Videos" />
+
+    </group>
+
+    <item android:title="Connect">
+        <menu>
+            <item
+                android:id="@+id/nav_website"
+                android:title="Website" />
+            <!--android:icon="@drawable/ic_menu_share"-->
+
+            <item
+                android:id="@+id/nav_facebook"
+                android:title="Facebook" />
+            <!--android:icon="@drawable/ic_menu_share"-->
+
+            <item
+                android:id="@+id/nav_instagram"
+                android:title="Instagram" />
+
+            <!--android:icon="@drawable/ic_menu_send"-->
+
+        </menu>
+    </item>
+
+</menu>

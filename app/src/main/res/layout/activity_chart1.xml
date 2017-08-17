@@ -9,7 +9,7 @@
     tools:openDrawer="start">
 
     <include
-        layout="@layout/app_bar_score"
+        layout="@layout/app_bar_chart1"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
@@ -19,7 +19,7 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
-        app:headerLayout="@layout/nav_header_score"
-        app:menu="@menu/activity_score_drawer" />
+        app:headerLayout="@layout/nav_header_chart1"
+        app:menu="@menu/activity_chart1_drawer" />
 
 </android.support.v4.widget.DrawerLayout>

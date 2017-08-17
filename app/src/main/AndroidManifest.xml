@@ -70,8 +70,16 @@
         <activity
             android:name=".Chart"
             android:theme="@style/AppTheme.NoActionBar" />
-        <!--<activity android:name=".Web"-->
-            <!--android:theme="@style/AppTheme.NoActionBar" />-->
+        <!-- <activity android:name=".Web" -->
+        <!-- android:theme="@style/AppTheme.NoActionBar" /> -->
+        <activity
+            android:name=".Chart1"
+            android:label="@string/title_activity_chart1"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Score"
+            android:label="@string/title_activity_score"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
