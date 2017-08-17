@@ -27,12 +27,16 @@ public class Updates extends AppCompatActivity {
 
 
             TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
-            tabLayout.addTab(tabLayout.newTab().setText("ALL UPDATES"));
-            tabLayout.addTab(tabLayout.newTab().setText("ARYANS"));
-            tabLayout.addTab(tabLayout.newTab().setText("MUGHALS"));
-            tabLayout.addTab(tabLayout.newTab().setText("RAJPUTS"));
-            tabLayout.addTab(tabLayout.newTab().setText("SPARTANS"));
-            tabLayout.addTab(tabLayout.newTab().setText("VIKINGS"));
+            tabLayout.addTab(tabLayout.newTab().setText("CHAVARA HALL"));
+            tabLayout.addTab(tabLayout.newTab().setText("GALLERY HALL"));
+            tabLayout.addTab(tabLayout.newTab().setText("PAREEKSHA BHAVAN H1"));
+            tabLayout.addTab(tabLayout.newTab().setText("PAREEKSHA BHAVAN H2"));
+            tabLayout.addTab(tabLayout.newTab().setText("PAREEKSHA BHAVAN H3"));
+            tabLayout.addTab(tabLayout.newTab().setText("PAREEKSHA BHAVAN H4"));
+            tabLayout.addTab(tabLayout.newTab().setText("PAREEKSHA BHAVAN H5"));
+            tabLayout.addTab(tabLayout.newTab().setText("OPEN STAGE"));
+            tabLayout.addTab(tabLayout.newTab().setText("LECTURE HALL"));
+            tabLayout.addTab(tabLayout.newTab().setText("LECTURE HALL"));
             tabLayout.setTabGravity(TabLayout.GRAVITY_CENTER);
 
 
