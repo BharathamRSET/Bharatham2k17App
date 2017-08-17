@@ -30,13 +30,13 @@ public class Fb extends AppCompatActivity {
     Spinner drop_down;
     int flag = 0;
     int choice;
-    String option = "Option";
+    String option = "Click Here To Select";
     TextView selectBadge;
     private CallbackManager callbackManager;
     private AccessTokenTracker accessTokenTracker;
     Typeface bebas;
 
-    final String[] spinner_items_group = new String[]{"Option","Bharatham 2k17","Aryans","Mughals","Rajputs","Spartans","Vikings"};
+    final String[] spinner_items_group = new String[]{"Click Here To Select","Bharatham 2k17","Aryans","Mughals","Rajputs","Spartans","Vikings"};
 
 
     private ProfileTracker profileTracker;
@@ -183,7 +183,7 @@ public class Fb extends AppCompatActivity {
             if (flag == 1) {
 
 
-            if (option.equalsIgnoreCase("Option")) {
+            if (option.equalsIgnoreCase("Click Here To Select")) {
                 Toast.makeText(Fb.this, "Please Select A Badge!", Toast.LENGTH_SHORT).show();
             } else {
                 main.putExtra("choice", choice);

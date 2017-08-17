@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -20,6 +21,7 @@ import android.view.MenuItem;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
 
@@ -29,6 +31,9 @@ public class HomeActivity extends AppCompatActivity
     Animation fade_in, fade_out;
     ViewFlipper viewFlipper;
     ImageView mImageView;
+    TextView textView1,textView2,textView3,textView4,textView5;
+
+    Typeface bebas;
 
     final private int STORAGE_PERMISSION_CODE = 23;
 
@@ -48,6 +53,7 @@ public class HomeActivity extends AppCompatActivity
 //            }
 //        });
 
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -57,17 +63,35 @@ public class HomeActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        viewFlipper = (ViewFlipper) this.findViewById(R.id.bckgrndViewFlipper1);
+//        viewFlipper = (ViewFlipper) this.findViewById(R.id.bckgrndViewFlipper1);
         fade_in = AnimationUtils.loadAnimation(this,
                 android.R.anim.slide_in_left);
         fade_out = AnimationUtils.loadAnimation(this,
                 android.R.anim.slide_out_right);
-        viewFlipper.setInAnimation(fade_in);
-        viewFlipper.setOutAnimation(fade_out);
-//sets auto flipping
-        viewFlipper.setAutoStart(true);
-        viewFlipper.setFlipInterval(2500);
-        viewFlipper.startFlipping();
+//        viewFlipper.setInAnimation(fade_in);
+//        viewFlipper.setOutAnimation(fade_out);
+////sets auto flipping
+//        viewFlipper.setAutoStart(true);
+//        viewFlipper.setFlipInterval(2500);
+//        viewFlipper.startFlipping();
+
+
+
+
+        textView1 = (TextView)findViewById(R.id.textView1);
+        textView2 = (TextView)findViewById(R.id.textView2);
+        textView3 = (TextView)findViewById(R.id.textView3);
+        textView4 = (TextView)findViewById(R.id.textView4);
+        textView5 = (TextView)findViewById(R.id.textView5);
+
+
+        bebas = Typeface.createFromAsset(getResources().getAssets(),  "fonts/bebasneue.ttf");
+        textView1.setTypeface(bebas);
+        textView2.setTypeface(bebas);
+        textView3.setTypeface(bebas);
+        textView4.setTypeface(bebas);
+        textView5.setTypeface(bebas);
+
 
 
 
@@ -155,13 +179,24 @@ public class HomeActivity extends AppCompatActivity
             startActivity(galleryIntent);
             //
         }
+        else if (id == R.id.nav_website){
+//            Intent galleryIntent = new Intent(HomeActivity.this,Web.class);
+//            startActivity(galleryIntent);
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.bharatham2k17.com")));
+            //
+        }
+        else if (id == R.id.nav_schedule){
+            Intent galleryIntent = new Intent(HomeActivity.this,Updates.class);
+            startActivity(galleryIntent);
+
+        }
         else if (id == R.id.nav_gallery){
             Intent galleryIntent = new Intent(HomeActivity.this,Gallery.class);
             startActivity(galleryIntent);
             //
         }else if (id == R.id.nav_facebook){
             try {
-                //change page id
+
                 Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("fb://page/1855389091393568"));
                 startActivity(intent);
             } catch (Exception e) {

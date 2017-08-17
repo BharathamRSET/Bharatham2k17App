@@ -19,8 +19,15 @@
         <item
             android:id="@+id/nav_badge"
             android:icon="@drawable/ic_assignment_ind_black_24dp"
-            android:title="Bharatham2k17 Badge" />
-
+            android:title="Bharatham Badge" />
+        <item
+            android:id="@+id/nav_schedule"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="Schedule" />
+        <item
+            android:id="@+id/nav_gallery"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="Gallery" />
         //next update
         <!--<item-->
             <!--android:id="@+id/nav_selfie"-->
@@ -32,10 +39,7 @@
             <!--android:icon="@drawable/ic_menu_manage"-->
             <!--android:title="Selfie Gallery" />-->
 
-        <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="Gallery" />
+
         <item
             android:id="@+id/nav_videos"
             android:icon="@drawable/ic_video_library_black_24dp"

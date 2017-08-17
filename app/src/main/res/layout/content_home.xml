@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -7,71 +8,122 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.roundmelon.jv.bharatham2k17.HomeActivity"
     tools:showIn="@layout/app_bar_home">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
 
-    <ImageView
-        android:id="@+id/imageView7"
-        android:layout_width="wrap_content"
-        android:layout_height="200dp"
-        app:srcCompat="@drawable/bharatham_bg_cut"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="-147dp"
-        android:layout_marginBottom="343dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <LinearLayout
-        android:id="@+id/ll"
-        android:layout_width="368dp"
-        android:layout_height="300dp"
-        android:layout_marginLeft="8dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginRight="8dp"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginBottom="41dp">
-        <ViewFlipper
-            android:id="@+id/bckgrndViewFlipper1"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent">
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/bm" />
 
-            <ImageView
-                android:id="@+id/bckgrndImageView6"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:scaleType="fitCenter"
-                android:src="@drawable/mughals" />
-            <ImageView
-                android:id="@+id/bckgrndImageView5"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:scaleType="fitCenter"
-                android:src="@drawable/rajputs" />
-            <ImageView
-                android:id="@+id/bckgrndImageView4"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:scaleType="fitCenter"
-                android:src="@drawable/spartans" />
-            <ImageView
-                android:id="@+id/bckgrndImageView3"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:scaleType="fitCenter"
-                android:src="@drawable/vikings" />
 
-            <ImageView
-                android:id="@+id/bckgrndImageView7"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:scaleType="fitCenter"
-                android:src="@drawable/aryans" />
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/imageView"
+            app:srcCompat="@drawable/aryans" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:id="@+id/textView1"
+            android:text="ARYANS"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center_horizontal"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:textColor="#834CB7"
+            android:layout_below="@id/imageView1"/>
 
-        </ViewFlipper>
-    </LinearLayout>
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textView1"
+            app:srcCompat="@drawable/mughals" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:id="@+id/textView2"
+            android:text="MUGHALS"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:layout_centerHorizontal="true"
+            android:textColor="#E95403"
+            android:layout_below="@id/imageView2"/>
+
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textView2"
+            app:srcCompat="@drawable/rajputs" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:id="@+id/textView3"
+            android:text="RAJPUTS"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:layout_centerHorizontal="true"
+            android:textColor="#FFEB3B"
+            android:layout_below="@id/imageView3"/>
+
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="match_parent"
+            android:layout_below="@id/textView3"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/spartans" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:id="@+id/textView4"
+            android:text="SPARTANS"
+            android:layout_centerHorizontal="true"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:textColor="#B71C1C"
+            android:layout_below="@id/imageView4"/>
+
+
+
+
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textView4"
+            app:srcCompat="@drawable/vikings" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:id="@+id/textView5"
+            android:text="VIKINGS"
+            android:textSize="25sp"
+            android:layout_centerHorizontal="true"
+            android:textStyle="bold"
+            android:textColor="#0D47A1"
+            android:layout_below="@id/imageView5"/>
+
+    </RelativeLayout>
+    </ScrollView>
 
 
 </RelativeLayout>

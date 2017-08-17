@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.roundmelon.jv.bharatham2k17">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -9,7 +13,8 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Splash"
+        <activity
+            android:name=".Splash"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -17,12 +22,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Score2"
-            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".Score2"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".HomeActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
-
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Fb"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
@@ -41,30 +46,32 @@
             android:authorities="com.facebook.app.FacebookContentProvider110276436337394"
             android:exported="true" />
 
-        <activity android:name=".Badge"
-            android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".Selfie"
-            android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".SelfieGallery"
-            android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".Gallery"
-            android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".Video"
-            android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".Youtube"
-            android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".DayOne"
-            android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".Chart"
-            android:theme="@style/AppTheme.NoActionBar"/>
-
-
-
+        <activity
+            android:name=".Badge"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Selfie"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".SelfieGallery"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Gallery"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Video"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Youtube"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Updates"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Chart"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <!--<activity android:name=".Web"-->
+            <!--android:theme="@style/AppTheme.NoActionBar" />-->
     </application>
-
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
 </manifest>
