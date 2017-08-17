@@ -9,4 +9,6 @@
     <string name="facebook_app_id">110276436337394</string>
     <string name="title_activity_chart1">Chart1</string>
     <string name="title_activity_score">Score</string>
+    <string name="title_activity_video1">Video1</string>
+    <string name="title_activity_updates1">Updates1</string>
 </resources>

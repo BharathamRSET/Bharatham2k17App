@@ -234,9 +234,9 @@ public class Score extends AppCompatActivity
 //            startActivity(selfieGalleryintent);
 //        }
         else if (id == R.id.nav_videos){
-            Intent galleryIntent = new Intent(this,Video.class);
+            Intent galleryIntent = new Intent(this,Video1.class);
             startActivity(galleryIntent);
-            //
+            finish();
         }
         else if (id == R.id.nav_website){
 //            Intent galleryIntent = new Intent(this,Web.class);
@@ -245,9 +245,9 @@ public class Score extends AppCompatActivity
             //
         }
         else if (id == R.id.nav_schedule){
-            Intent galleryIntent = new Intent(this,Updates.class);
+            Intent galleryIntent = new Intent(this,Updates1.class);
             startActivity(galleryIntent);
-
+            finish();
         }
         else if (id == R.id.nav_gallery){
             Intent galleryIntent = new Intent(this,Gallery.class);

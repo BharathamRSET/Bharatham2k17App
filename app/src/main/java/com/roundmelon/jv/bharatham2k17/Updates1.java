@@ -2,58 +2,34 @@ package com.roundmelon.jv.bharatham2k17;
 
 import android.Manifest;
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import com.firebase.client.DataSnapshot;
-import com.firebase.client.Firebase;
-import com.firebase.client.FirebaseError;
-import com.firebase.client.ValueEventListener;
-import com.github.mikephil.charting.charts.BarChart;
-import com.github.mikephil.charting.data.BarData;
-import com.github.mikephil.charting.data.BarDataSet;
-import com.github.mikephil.charting.data.BarEntry;
-
-import java.util.ArrayList;
-
-public class Chart1 extends AppCompatActivity
+public class Updates1 extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     final private int STORAGE_PERMISSION_CODE = 23;
-    float oneChart;
-    float twoChart;
-    float threeChart;
-    float fourChart;
-    float fiveChart;
-    String oneCharts;
-    String twoCharts;
-    String threeCharts;
-    String fourCharts;
-    String fiveCharts;
-    BarChart chart;
-    private ProgressDialog pDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_chart1);
+        setContentView(R.layout.activity_updates1);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -76,100 +52,43 @@ public class Chart1 extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
 
-        Firebase.setAndroidContext(this);
-        pDialog = new ProgressDialog(this);
 
-
-
-        //Creating firebase object
-        Firebase ref =new Firebase("https://bharatham-2k17.firebaseio.com/Score");
-
-        //Getting values to store
-        String aryans = "0";
-        String mughals = "0";
-        String rajputs = "0";
-        String spartans = "0";
-        String vikings = "0";
-
-        //Creating Person object
-        House house = new House();
-
-        //Adding values
-        house.setAryans(aryans);
-        house.setMughals(mughals);
-        house.setRajputs(rajputs);
-        house.setSpartans(spartans);
-        house.setVikings(vikings);
-
-
-        //Storing values to firebase
-//        ref.child("House").setValue(house);
-//          ref.child("House");
-
-        pDialog.setMessage("Updating Scores...");
-        pDialog.setCancelable(false);
-        pDialog.show();
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
+        tabLayout.addTab(tabLayout.newTab().setText("CHAVARA HALL"));
+        tabLayout.addTab(tabLayout.newTab().setText("GALLERY HALL"));
+        tabLayout.addTab(tabLayout.newTab().setText("PAREEKSHA BHAVAN H1"));
+        tabLayout.addTab(tabLayout.newTab().setText("PAREEKSHA BHAVAN H2"));
+        tabLayout.addTab(tabLayout.newTab().setText("PAREEKSHA BHAVAN H3"));
+        tabLayout.addTab(tabLayout.newTab().setText("PAREEKSHA BHAVAN H4"));
+        tabLayout.addTab(tabLayout.newTab().setText("PAREEKSHA BHAVAN H5"));
+        tabLayout.addTab(tabLayout.newTab().setText("OPEN STAGE"));
+        tabLayout.addTab(tabLayout.newTab().setText("LECTURE HALL"));
+        tabLayout.addTab(tabLayout.newTab().setText("LECTURE HALL"));
+        tabLayout.setTabGravity(TabLayout.GRAVITY_CENTER);
 
 
 
 
-
-
-
-        //Value event listener for realtime data update
-        ref.addValueEventListener(new ValueEventListener() {
+        final ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
+        final PagerAdapter adapter = new PagerAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
+        viewPager.setAdapter(adapter);
+        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
-            public void onDataChange(DataSnapshot snapshot) {
-                Log.d("Snapshot",snapshot.getChildrenCount()+"");
-                for (DataSnapshot postSnapshot : snapshot.getChildren()) {
-                    //Getting the data from snapshot
-                    House house = postSnapshot.getValue(House.class);
-
-                    //Adding it to a string
-//                    String string = "Name: "+person.getName()+"\nAddress: "+person.getAddress()+"\n\n";
-//                    Log.d("Sna",house.getAll());
-                    oneCharts = house.getAryans();
-                    twoCharts = house.getMughals();
-                    threeCharts = house.getRajputs();
-                    fourCharts = house.getSpartans();
-                    fiveCharts = house.getVikings();
-
-
-                    oneChart = Float.parseFloat(oneCharts);
-                    twoChart = Float.parseFloat(twoCharts);
-                    threeChart = Float.parseFloat(threeCharts);
-                    fourChart = Float.parseFloat(fourCharts);
-                    fiveChart = Float.parseFloat(fiveCharts);
-
-                    if(pDialog.isShowing())
-                        pDialog.dismiss();
-                    BarData data = new BarData(getXAxisValues(), getDataSet());
-                    chart.setData(data);
-                    chart.setDescription("");
-                    chart.animateY(2000);
-                    chart.invalidate();
-
-                    //Displaying it on textview
-//                    textViewPersons.setText(string);
-                }
+            public void onTabSelected(TabLayout.Tab tab) {
+                viewPager.setCurrentItem(tab.getPosition());
             }
 
             @Override
-            public void onCancelled(FirebaseError firebaseError) {
-                System.out.println("The read failed: " + firebaseError.getMessage());
+            public void onTabUnselected(TabLayout.Tab tab) {
 
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
 
             }
         });
-
-
-        chart = (BarChart) findViewById(R.id.chart);
-
-        BarData data = new BarData(getXAxisValues(), getDataSet());
-        chart.setData(data);
-        chart.setDescription("");
-        chart.animateY(2000);
-        chart.invalidate();
 
 
 
@@ -210,14 +129,13 @@ public class Chart1 extends AppCompatActivity
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here
+
         int id = item.getItemId();
 
         if (id == R.id.nav_home) {
             Intent homeIntent = new Intent(this,HomeActivity.class);
             startActivity(homeIntent);
             finish();
-
         } else if (id == R.id.nav_scores) {
             //Intent scoreIntet = new Intent(this,Score2.class);
             Intent scoreIntet = new Intent(this,Chart1.class);
@@ -253,9 +171,9 @@ public class Chart1 extends AppCompatActivity
 //            startActivity(selfieGalleryintent);
 //        }
         else if (id == R.id.nav_videos){
-            Intent galleryIntent = new Intent(this,Video1.class);
+            Intent galleryIntent = new Intent(this,Video.class);
             startActivity(galleryIntent);
-            finish();
+            //
         }
         else if (id == R.id.nav_website){
 //            Intent galleryIntent = new Intent(this,Web.class);
@@ -344,67 +262,5 @@ public class Chart1 extends AppCompatActivity
 
         }
     }
-
-
-
-
-
-    private ArrayList<BarDataSet> getDataSet() {
-        ArrayList<BarDataSet> dataSets = null;
-
-        ArrayList<BarEntry> valueSet1 = new ArrayList<>();
-        BarEntry v1e1 = new BarEntry(oneChart, 0);
-        valueSet1.add(v1e1);
-
-
-        ArrayList<BarEntry> valueSet2 = new ArrayList<>();
-        BarEntry v2e1 = new BarEntry(twoChart, 0);
-        valueSet2.add(v2e1);
-
-        ArrayList<BarEntry> valueSet3 = new ArrayList<>();
-        BarEntry v3e1 = new BarEntry(threeChart, 0);
-        valueSet3.add(v3e1);
-
-        ArrayList<BarEntry> valueSet4 = new ArrayList<>();
-        BarEntry v4e1 = new BarEntry(fourChart, 0);
-        valueSet4.add(v4e1);
-
-        ArrayList<BarEntry> valueSet5 = new ArrayList<>();
-        BarEntry v5e1 = new BarEntry(fiveChart, 0);
-        valueSet5.add(v5e1);
-
-
-
-
-
-        BarDataSet barDataSet1 = new BarDataSet(valueSet1, "Aryans");
-        barDataSet1.setColor(Color.rgb(131,76,183));
-        BarDataSet barDataSet2 = new BarDataSet(valueSet2, "Mughals");
-        barDataSet2.setColor(Color.rgb(233,84,3));
-        BarDataSet barDataSet3 = new BarDataSet(valueSet3, "Rajputs");
-        barDataSet3.setColor(Color.rgb(255,235,59));
-        BarDataSet barDataSet4 = new BarDataSet(valueSet4, "Spartans");
-        barDataSet4.setColor(Color.rgb(183,28,28));
-        BarDataSet barDataSet5 = new BarDataSet(valueSet5, "Vikings");
-        barDataSet5.setColor(Color.rgb(13,71,161));
-
-
-
-
-        dataSets = new ArrayList<>();
-        dataSets.add(barDataSet1);
-        dataSets.add(barDataSet2);
-        dataSets.add(barDataSet3);
-        dataSets.add(barDataSet4);
-        dataSets.add(barDataSet5);
-        return dataSets;
-    }
-
-    private ArrayList<String> getXAxisValues() {
-        ArrayList<String> xAxis = new ArrayList<>();
-        xAxis.add("");
-
-        return xAxis;
-    }
-
 }
+

@@ -79,6 +79,14 @@
         <activity
             android:name=".Score"
             android:label="@string/title_activity_score"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Video1"
+            android:label="@string/title_activity_video1"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Updates1"
+            android:label="@string/title_activity_updates1"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
