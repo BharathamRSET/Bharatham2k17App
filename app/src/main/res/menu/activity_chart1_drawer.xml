@@ -16,10 +16,7 @@
             android:id="@+id/nav_updates"
             android:icon="@drawable/ic_featured_play_list_black_24dp"
             android:title="Updates" />
-        <item
-            android:id="@+id/nav_badge"
-            android:icon="@drawable/ic_assignment_ind_black_24dp"
-            android:title="Bharatham Badge" />
+
         <item
             android:id="@+id/nav_schedule"
             android:icon="@drawable/ic_today_black_24dp"

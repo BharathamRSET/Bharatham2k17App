@@ -13,6 +13,7 @@ public class Splash extends AppCompatActivity {
     TextView power;
     Typeface bebas;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

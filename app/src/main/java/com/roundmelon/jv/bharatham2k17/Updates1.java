@@ -1,17 +1,12 @@
 package com.roundmelon.jv.bharatham2k17;
 
-import android.Manifest;
-import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
@@ -19,7 +14,6 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 public class Updates1 extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -56,16 +50,9 @@ public class Updates1 extends AppCompatActivity
 
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
-        tabLayout.addTab(tabLayout.newTab().setText("CHAVARA HALL"));
-        tabLayout.addTab(tabLayout.newTab().setText("GALLERY HALL"));
-        tabLayout.addTab(tabLayout.newTab().setText("PAREEKSHA BHAVAN H1"));
-        tabLayout.addTab(tabLayout.newTab().setText("PAREEKSHA BHAVAN H2"));
-        tabLayout.addTab(tabLayout.newTab().setText("PAREEKSHA BHAVAN H3"));
-        tabLayout.addTab(tabLayout.newTab().setText("PAREEKSHA BHAVAN H4"));
-        tabLayout.addTab(tabLayout.newTab().setText("PAREEKSHA BHAVAN H5"));
-        tabLayout.addTab(tabLayout.newTab().setText("OPEN STAGE"));
-        tabLayout.addTab(tabLayout.newTab().setText("LECTURE HALL"));
-        tabLayout.addTab(tabLayout.newTab().setText("LECTURE HALL"));
+        tabLayout.addTab(tabLayout.newTab().setText("4"));
+        tabLayout.addTab(tabLayout.newTab().setText("6"));
+        tabLayout.addTab(tabLayout.newTab().setText("7"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_CENTER);
 
 
@@ -155,19 +142,7 @@ public class Updates1 extends AppCompatActivity
             finish();
 
         }
-        else if (id == R.id.nav_badge) {
-            if(isWriteStorageAllowed()){
 
-                Intent fbIntent = new Intent(this,Fb.class);
-                startActivity(fbIntent);
-
-
-            }
-
-            //If the app has not the permission then asking for the permission
-            requestStoragePermission();
-
-        }
 //        else if (id == R.id.nav_selfie) {
 //            Intent selfieIntent = new Intent(this,Selfie.class);
 //            startActivity(selfieIntent);
@@ -225,49 +200,6 @@ public class Updates1 extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-    private boolean isWriteStorageAllowed() {
-        //Getting the permission status
-        int result = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
 
-        //If permission is granted returning true
-        if (result == PackageManager.PERMISSION_GRANTED)
-            return true;
-
-        //If permission is not granted returning false
-        return false;
-    }
-    //Requesting permission
-    private void requestStoragePermission(){
-
-        if (ActivityCompat.shouldShowRequestPermissionRationale((Activity)this,Manifest.permission.WRITE_EXTERNAL_STORAGE)){
-
-            Toast.makeText(this,"This permission is required to store the badge on your device.",Toast.LENGTH_LONG).show();
-        }
-
-        ActivityCompat.requestPermissions((Activity)this,new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},STORAGE_PERMISSION_CODE);
-    }
-    @Override
-    public void onRequestPermissionsResult(int requestCode,
-                                           String permissions[], int[] grantResults) {
-        switch (requestCode) {
-            case STORAGE_PERMISSION_CODE : {
-                // If request is cancelled, the result arrays are empty.
-                if (grantResults.length > 0
-                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-
-                    Intent fbIntent = new Intent(this,Fb.class);
-                    startActivity(fbIntent);
-
-
-                } else {
-                    Toast.makeText(this,"Please grant the permission to access this feature.",Toast.LENGTH_LONG).show();
-
-                }
-                return;
-            }
-
-
-        }
-    }
 }
 
