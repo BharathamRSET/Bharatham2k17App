@@ -170,27 +170,7 @@ public class Score extends AppCompatActivity
             back_pressed = System.currentTimeMillis();        }
     }
 
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        // Inflate the menu; this adds items to the action bar if it is present.
-//        getMenuInflater().inflate(R.menu.home, menu);
-//        return true;
-//    }
-//
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        // Handle action bar item clicks here. The action bar will
-//        // automatically handle clicks on the Home/Up button, so long
-//        // as you specify a parent activity in AndroidManifest.xml.
-//        int id = item.getItemId();
-//
-//        //noinspection SimplifiableIfStatement
-//        if (id == R.id.action_settings) {
-//            return true;
-//        }
-//
-//        return super.onOptionsItemSelected(item);
-//    }
+
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
@@ -216,22 +196,14 @@ public class Score extends AppCompatActivity
 
         }
 
-//        else if (id == R.id.nav_selfie) {
-//            Intent selfieIntent = new Intent(this,Selfie.class);
-//            startActivity(selfieIntent);
-//
-//        } else if (id == R.id.nav_selfiegallery) {
-//            Intent  selfieGalleryintent = new Intent(this,SelfieGallery.class);
-//            startActivity(selfieGalleryintent);
-//        }
+
         else if (id == R.id.nav_videos){
             Intent galleryIntent = new Intent(this,Video1.class);
             startActivity(galleryIntent);
             finish();
         }
         else if (id == R.id.nav_website){
-//            Intent galleryIntent = new Intent(this,Web.class);
-//            startActivity(galleryIntent);
+
             startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.bharatham2k17.com")));
             //
         }
